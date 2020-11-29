@@ -47,7 +47,8 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
     
     // UI界面创建
     func initView() {
-        self.title = "播放列表"
+        let title = self.isPrivate ? "加密列表":"播放列表"
+        self.navigationController?.title = title
         self.view.backgroundColor = UIColor.cyan
         self.view.addSubview(tableView)
         if self.edit {
@@ -66,22 +67,23 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         var editBottomView = UIView.init(frame: CGRect(x: 0,
                                                        y: screenObject.height - 80,
                                                        width: screenObject.width,
-                                                       height: 50))
+                                                       height: 80))
+        editBottomView.backgroundColor = UIColor.white
         let editTitles = ["全选", "删除", "加密"]
-        let space = 20
-        let buttonWidth = (screenObject.width - 20*4)/3.0
+        let space = 30
+        let buttonWidth = (screenObject.width - CGFloat(space*4))/3.0
         for index in 0 ... 2 {
             let button = UIButton.init(frame: CGRect(x: CGFloat(space) + (CGFloat(space) + buttonWidth)*CGFloat(index),
-                                                     y: 0,
+                                                     y: 5,
                                                      width: buttonWidth,
-                                                     height: 50))
+                                                     height: 40))
             button.setTitle(editTitles[index], for: .normal)
             if index == 0 {
                 button.setTitle("反选", for: .selected)
             }
-            button.setTitleColor(UIColor.cyan, for: .normal)
+            button.setTitleColor(UIColor.white, for: .normal)
             button.backgroundColor = UIColor.gray
-            button.layer.cornerRadius = 4
+            button.layer.cornerRadius = 8
             button.layer.masksToBounds = true
             button.tag = index
             button.addTarget(self, action: #selector(editButtonClick), for: .touchUpInside)
@@ -124,6 +126,10 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         self.edit = edit
     }
     
+    func setIsPrivate(isPrivate:Bool) {
+        self.isPrivate = isPrivate
+    }
+    
     @objc func rightButtonClick() {
         if self.edit {
             self.navigationController?.dismiss(animated: true, completion: {})
@@ -138,9 +144,11 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func updateData() {
+//        SwiftProgressHUD.showWait()
         DispatchQueue.global().async { [self] in
-            dataItems = cfManager.preparePlayModels(isPrivate: false)
+            dataItems = cfManager.preparePlayModels(isPrivate: self.isPrivate)
             DispatchQueue.main.async {
+//                SwiftProgressHUD.hideAllHUD()
                 self.tableView.reloadData()
             }
         }

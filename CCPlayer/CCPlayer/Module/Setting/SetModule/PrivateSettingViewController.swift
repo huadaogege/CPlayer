@@ -29,15 +29,6 @@ class PrivateSettingViewController: UIViewController, PasswordViewDelegate {
         self.view.addSubview(self.pwdView)
     }
     
-//    lazy var pwdView:PasswordView = {() -> UIView in
-//        let pwdView = PasswordView.init(frame: CGRect(x: 0,
-//                                                      y: 0,
-//                                                      width: screenObject.width,
-//                                                      height: screenObject.height))
-//        pwdView.delegate = self
-//        return pwdView
-//    }() as! PasswordView
-    
     func passwordView() -> PasswordView {
         let pwdView = PasswordView.init(frame: CGRect(x: 0,
                                                       y: 0,
@@ -51,7 +42,11 @@ class PrivateSettingViewController: UIViewController, PasswordViewDelegate {
         if self.pwdType == PwdType.PwdNeedUnlock {
             let savedPwd = storeManager.getValueWithKey(key: PrivateWorkspacePasswordKey)
             if savedPwd == password {
-                
+                self.pwdView.removeFromSuperview()
+                let playListVC = PlayListViewController.init()
+                playListVC.setIsPrivate(isPrivate: true)
+                self.addChild(playListVC)
+                self.view.addSubview(playListVC.view)
             } else {
                 self.pwdView.removeFromSuperview()
                 self.pwdView = passwordView()

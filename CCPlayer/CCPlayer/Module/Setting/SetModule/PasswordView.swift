@@ -53,10 +53,6 @@ class PasswordView: UIView, UITextFieldDelegate {
             self.tipLabel.text = "密码错误,请重新输入"
             self.tipLabel.textColor = UIColor.red
         }
-//        self.textField.text = ""
-//        self.password = ""
-//        self.textField.becomeFirstResponder()
-//        updateDots()
     }
     
     lazy var tipLabel = {() -> UILabel in

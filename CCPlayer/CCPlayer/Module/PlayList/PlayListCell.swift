@@ -49,7 +49,7 @@ class PlayListCell: UITableViewCell {
         selectButton.backgroundColor = UIColor.gray
         selectButton.setBackgroundImage(UIImage.init(named: "radiobtn_unchecked"), for: .normal)
         selectButton.setBackgroundImage(UIImage.init(named: "radiobtn_checked"), for: .selected)
-        selectButton.layer.cornerRadius = 4
+        selectButton.layer.cornerRadius = 10
         selectButton.layer.masksToBounds = true
         selectButton.addTarget(self, action: #selector(selectButtonClick), for: .touchUpInside)
         return selectButton

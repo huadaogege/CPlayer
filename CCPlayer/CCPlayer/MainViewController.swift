@@ -14,9 +14,13 @@ class MainViewController: UITabBarController {
         self.tabBar.tintColor = UIColor(red: 0/255, green:169/255, blue:169/255, alpha:1)
         
         let playVC = PlayListViewController()
+        playVC.setIsPrivate(isPrivate: false)
         let playNav = UINavigationController(rootViewController: playVC)
         playNav.tabBarItem = UITabBarItem(title: "列表", image: UIImage(named: "wb_private"), selectedImage: UIImage(named: ""))
         
+        let photoAlbumVC = PhotoAlbumViewController()
+        let photoAlbumNav = UINavigationController.init(rootViewController: photoAlbumVC)
+        photoAlbumNav.tabBarItem = UITabBarItem(title: "相册", image: UIImage(named: "safari"), selectedImage: UIImage(named: ""))
         
         let playOnlineVC = PlayOnlineViewController()
         let playOnlineNav = UINavigationController(rootViewController: playOnlineVC)
@@ -27,7 +31,7 @@ class MainViewController: UITabBarController {
         let setNav = UINavigationController(rootViewController: setVC)
         setNav.tabBarItem = UITabBarItem(title: "设置", image: UIImage(named: "wb_refresh"), selectedImage: UIImage(named: ""))
         
-        self.viewControllers = [playNav, playOnlineNav, setNav]
+        self.viewControllers = [playNav, photoAlbumNav, playOnlineNav, setNav]
         self.selectedIndex = 0
     }
     
