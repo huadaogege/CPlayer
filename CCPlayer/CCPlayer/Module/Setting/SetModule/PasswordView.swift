@@ -9,15 +9,23 @@ import Foundation
 import UIKit
 
 enum PwdType:Int {
-    case PwdNeedUnlock, PwdNeedSet
+    case PwdUnknown = 0,
+         PwdNeedUnlock = 1,
+         PwdNeedSet = 2,
+         PwdError = 3
+}
+
+protocol PasswordViewDelegate:NSObjectProtocol {
+    func passwordInputFinish(password:String)
 }
 
 class PasswordView: UIView, UITextFieldDelegate {
     
+    weak var delegate:PasswordViewDelegate?
     let screenObject = UIScreen.main.bounds
     var dotImages = Array<UIImageView>()
     var password:String = ""
-    var pwdType:PwdType!
+    var pwdType:PwdType = PwdType.PwdUnknown
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,13 +40,40 @@ class PasswordView: UIView, UITextFieldDelegate {
         self.addSubview(pwdView)
         self.addSubview(self.textField)
         self.textField.becomeFirstResponder()
-        
+        self.addSubview(self.tipLabel)
     }
+    
+    func setPwdType(pwdType:PwdType) {
+        self.pwdType = pwdType
+        if self.pwdType == PwdType.PwdNeedUnlock {
+            self.tipLabel.text = "请输入密码"
+        } else if self.pwdType == PwdType.PwdNeedSet {
+            self.tipLabel.text = "请设置密码"
+        } else if self.pwdType == PwdType.PwdError {
+            self.tipLabel.text = "密码错误,请重新输入"
+            self.tipLabel.textColor = UIColor.red
+        }
+//        self.textField.text = ""
+//        self.password = ""
+//        self.textField.becomeFirstResponder()
+//        updateDots()
+    }
+    
+    lazy var tipLabel = {() -> UILabel in
+        var tipLabel = UILabel.init(frame: CGRect(x: 0,
+                                                  y: 170,
+                                                  width: screenObject.width,
+                                                  height: 30))
+        tipLabel.font = UIFont.systemFont(ofSize: 20)
+        tipLabel.textColor = UIColor.gray
+        tipLabel.textAlignment = .center
+        return tipLabel
+    }()
     
     lazy var pwdView = {() -> UIView in
         
         var pwdView = UIView.init(frame: CGRect(x: (screenObject.width - 200)/2.0,
-                                                y: 200,
+                                                y: 250,
                                                 width: 200,
                                                 height: 30))
         let space:Int = 15
@@ -51,7 +86,7 @@ class PasswordView: UIView, UITextFieldDelegate {
                                height: dotWidth)
             dotImage.layer.cornerRadius = CGFloat(dotWidth)/2.0
             dotImage.layer.masksToBounds = true
-            dotImage.backgroundColor = UIColor.red
+            dotImage.backgroundColor = UIColor.lightGray
             pwdView.addSubview(dotImage)
             dotImages.append(dotImage)
         }
@@ -66,19 +101,25 @@ class PasswordView: UIView, UITextFieldDelegate {
     }()
     
     func updateDots() {
-        NSLog("password:  %@", password)
+        // 更新UI
+        print("password:", password)
         let pwdCount = password.count - 1
         for index in 0 ... 5 {
             let image = dotImages[index]
             if index <= pwdCount {
-                image.backgroundColor = UIColor.green
+                image.backgroundColor = UIColor.black
             } else {
-                image.backgroundColor = UIColor.red
+                image.backgroundColor = UIColor.lightGray
+            }
+        }
+        // 验证设置密码
+        if password.count == 6 {
+            if (self.delegate != nil) {
+                self.delegate?.passwordInputFinish(password: password)
             }
         }
     }
     
-    // delegate
     func textFieldDidBeginEditing(_ textField: UITextField) {
         NSLog("%@", self.textField.text ?? "")
     }

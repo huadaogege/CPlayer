@@ -28,7 +28,11 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func createTable() -> Void {
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: screenObject.width, height: screenObject.height), style: UITableView.Style.grouped)
+        tableView = UITableView(frame: CGRect(x: 0,
+                                              y: 0,
+                                              width: screenObject.width,
+                                              height: screenObject.height),
+                                style: UITableView.Style.grouped)
         tableView.delegate = self
         tableView.dataSource = self
         self.view.addSubview(tableView)
@@ -53,7 +57,6 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         if (cell == nil) {
             cell = SettingCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: identifier)
         }
-        cell?.backgroundColor = UIColor.yellow
         cell.setTitle(title: self.dataItems[indexPath.row])
         cell?.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         return cell!

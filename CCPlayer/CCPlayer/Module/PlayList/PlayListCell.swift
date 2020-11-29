@@ -57,7 +57,7 @@ class PlayListCell: UITableViewCell {
     
     lazy var snapImageView = {() -> UIImageView in
         var snapImageView = UIImageView.init()
-        snapImageView.backgroundColor = UIColor.orange
+        snapImageView.backgroundColor = UIColor.lightGray
         snapImageView.frame = snapImageViewFrame
         snapImageView.layer.cornerRadius = 4
         snapImageView.layer.masksToBounds = true

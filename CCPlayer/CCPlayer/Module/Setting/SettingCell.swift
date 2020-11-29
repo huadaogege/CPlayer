@@ -25,7 +25,6 @@ class SettingCell: UITableViewCell {
     
     lazy var titleLabel = {() -> UILabel in
         let label = UILabel.init()
-        label.backgroundColor = UIColor.green
         label.text = "占位字符"
         label.frame = CGRect(x: 10, y: 10, width: 200, height: 40)
         label.font = UIFont.systemFont(ofSize: 15)
