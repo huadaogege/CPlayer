@@ -11,9 +11,11 @@ import AVFoundation
 
 class PlayListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PlayListCellDelegate {
     var screenObject = UIScreen.main.bounds
-    var dataItems : Array<Any>!
+    var dataItems : Array<Any>! = Array.init()
     var edit:Bool = false
+    var isPrivate:Bool = false
     var selectDataItems : Array<Any> = Array.init()
+    let cfManager = CFileManager.init()
     
     // override 方法
     override func viewDidLoad() {
@@ -110,6 +112,10 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
             if self.selectDataItems.count == 0 {
                 return
             }
+            for model in self.selectDataItems {
+                cfManager.moveToPrivatePath(path: (model as! PlayModel).path)
+            }
+            updateData()
         }
     }
     
@@ -132,31 +138,12 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func updateData() {
-        dataItems = testData()
-        self.tableView.reloadData()
-    }
-    
-    func testData() -> Array<PlayModel> {
-        let fileManager = CFileManager()
-        let pathItems = fileManager.searchDocumentsPaths()
-        if pathItems.count == 0 {
-            return Array.init()
+        DispatchQueue.global().async { [self] in
+            dataItems = cfManager.preparePlayModels(isPrivate: false)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
-        
-        var models = Array<PlayModel>()
-        let parser = PlayFileParser()
-        
-        for index in 0...(pathItems.count - 1) {
-            let filePath = pathItems[index] as! String
-            let image = parser.iconOfVideo(filePath: filePath)
-            let name = parser.nameOfVideo(filePath: filePath)
-            let time = parser.totalTimeOfVideo(filePath: filePath)
-            let size = parser.sizeOfVideo(filePath: filePath)
-            
-            let model = PlayModel.init(name: name, size: size, time: time, path:filePath , icon: image)
-            models.append(model)
-        }
-        return models
     }
     
     // tableViewDelegate 方法

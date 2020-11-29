@@ -20,6 +20,17 @@ class ViewController: UIViewController {
         self.addChild(mainVC)
         self.view.addSubview(mainVC.view)
         
+        let fileName = "111中国合伙人007皇家赌场.mp4中国合伙人007皇家赌场.mp4中国合伙人007皇家赌场.mp4中国合伙人007皇家赌场.mp4"
+        let plainData = fileName.data(using: String.Encoding.utf8)
+        let base64String = plainData?.base64EncodedString(options: NSData.Base64EncodingOptions.init(rawValue: 0)) ?? ""
+        
+        
+        let decodedData = NSData(base64Encoded: base64String, options: NSData.Base64DecodingOptions.init(rawValue: 0))
+        let decodedString = NSString(data: decodedData! as Data, encoding: String.Encoding.utf8.rawValue)! as String
+        
+        
+        print(decodedString)
+        
     }
     
     func initNavPerf() -> Void {
@@ -37,7 +48,6 @@ class ViewController: UIViewController {
         let settingVC = SettingViewController()
         self.navigationController?.pushViewController(settingVC, animated: true)
     }
-
 
 }
 

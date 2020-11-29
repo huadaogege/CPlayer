@@ -13,6 +13,7 @@
 		E9017FE22569587000B3FCB2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9017FE12569587000B3FCB2 /* PlayerViewController.swift */; };
 		E9017FEA2569591F00B3FCB2 /* PlayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9017FE92569591F00B3FCB2 /* PlayModel.swift */; };
 		E9496F47256EA97100CF27C0 /* CFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9496F46256EA97100CF27C0 /* CFileManager.swift */; };
+		E96F2EC725729F43005416C3 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96F2EC625729F43005416C3 /* CommonUtil.swift */; };
 		E97928B42569EA97007BA26F /* PlayOnlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97928B32569EA97007BA26F /* PlayOnlineViewController.swift */; };
 		E97928BD256A3261007BA26F /* PrivateSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97928BC256A3260007BA26F /* PrivateSettingViewController.swift */; };
 		E97928C6256A3329007BA26F /* ConfigCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97928C5256A3329007BA26F /* ConfigCenter.swift */; };
@@ -55,6 +56,7 @@
 		E9017FE12569587000B3FCB2 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		E9017FE92569591F00B3FCB2 /* PlayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayModel.swift; sourceTree = "<group>"; };
 		E9496F46256EA97100CF27C0 /* CFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFileManager.swift; sourceTree = "<group>"; };
+		E96F2EC625729F43005416C3 /* CommonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
 		E97928B32569EA97007BA26F /* PlayOnlineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayOnlineViewController.swift; sourceTree = "<group>"; };
 		E97928BC256A3260007BA26F /* PrivateSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateSettingViewController.swift; sourceTree = "<group>"; };
 		E97928C5256A3329007BA26F /* ConfigCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigCenter.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 		E9017FD7256905D400B3FCB2 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				E96F2EC625729F43005416C3 /* CommonUtil.swift */,
 				E9496F45256EA95200CF27C0 /* FileManager */,
 				E97928C4256A32FC007BA26F /* Config */,
 				E97928B22569EA76007BA26F /* PlayOnline */,
@@ -378,6 +381,7 @@
 				E9017FCD2568F0A600B3FCB2 /* MainViewController.swift in Sources */,
 				E97928D0256A3E99007BA26F /* PasswordView.swift in Sources */,
 				E9017FE22569587000B3FCB2 /* PlayerViewController.swift in Sources */,
+				E96F2EC725729F43005416C3 /* CommonUtil.swift in Sources */,
 				E99AC1E92566BE0000A3DC20 /* SettingCell.swift in Sources */,
 				E99AC1E12565636500A3DC20 /* SettingViewController.swift in Sources */,
 				E9017FDC2569065700B3FCB2 /* PlayListCell.swift in Sources */,

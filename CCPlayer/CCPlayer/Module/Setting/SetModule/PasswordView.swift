@@ -60,15 +60,17 @@ class PasswordView: UIView, UITextFieldDelegate {
     
     lazy var textField = {() -> UITextField in
         var textField = UITextField.init()
+        textField.keyboardType = UIKeyboardType.numberPad
         textField.delegate = self
         return textField
     }()
     
     func updateDots() {
         NSLog("password:  %@", password)
+        let pwdCount = password.count - 1
         for index in 0 ... 5 {
             let image = dotImages[index]
-            if index+1 <= password.count {
+            if index <= pwdCount {
                 image.backgroundColor = UIColor.green
             } else {
                 image.backgroundColor = UIColor.red
@@ -89,7 +91,11 @@ class PasswordView: UIView, UITextFieldDelegate {
         let text:String = self.textField.text ?? ""
         let tmp = text + string
         if tmp.count <= 6 {
-            password = tmp
+            if string.count == 0 {
+                password = String(tmp.prefix(tmp.count - 1))
+            } else {
+                password = tmp
+            }
         } else {
             self.textField.text = password
         }
