@@ -14,7 +14,13 @@ class PlayFileParser: NSObject {
     func iconOfVideo(filePath:String) -> UIImage {
         let url = URL(fileURLWithPath: filePath)
         let asset = AVURLAsset.init(url: url, options: nil)
-        let gen = AVAssetImageGenerator.init(asset: asset)
+        let icon = iconWithAVAsset(avasset: asset)
+        
+        return icon
+    }
+    
+    func iconWithAVAsset(avasset:AVAsset) -> UIImage {
+        let gen = AVAssetImageGenerator.init(asset: avasset)
         gen.appliesPreferredTrackTransform = true
         let time = CMTimeMakeWithSeconds(2.0, preferredTimescale: 1)
         var icon:UIImage = UIImage.init()

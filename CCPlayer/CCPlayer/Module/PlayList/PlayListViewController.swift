@@ -144,14 +144,19 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func updateData() {
-//        SwiftProgressHUD.showWait()
-        DispatchQueue.global().async { [self] in
-            dataItems = cfManager.preparePlayModels(isPrivate: self.isPrivate)
-            DispatchQueue.main.async {
-//                SwiftProgressHUD.hideAllHUD()
-                self.tableView.reloadData()
-            }
+//        DispatchQueue.global().async { [self] in
+//            dataItems = cfManager.preparePlayModels(isPrivate: self.isPrivate)
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
+        
+        let photoAlbum = PhotoAlbumViewController.init()
+        photoAlbum.getAllPHAssetFromSysytem { [self] (playmodels: [PlayModel]?) in
+            dataItems = playmodels
+            self.tableView.reloadData()
         }
+        
     }
     
     // tableViewDelegate 方法
