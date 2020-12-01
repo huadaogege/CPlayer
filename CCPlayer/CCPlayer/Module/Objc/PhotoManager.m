@@ -25,6 +25,8 @@
     for (PHAsset *asset in videoAssets) {
         [[PHImageManager defaultManager] requestAVAssetForVideo:asset options:nil resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
             NSLog(@"");
+            PlayModel *model = [[PlayModel alloc] init];
+            
             [videoModels addObject:info];
             if (videoModels.count == videoAssets.count) {
                 if (block) {

@@ -14,14 +14,6 @@ class PlayModel: NSObject {
     var time:String = ""
     var path:String = ""
     var icon:UIImage = UIImage.init()
-    
-//    struct PlayModel {
-//        var name : String
-//        var size : String
-//        var time : String
-//        var path : String
-//        var icon : UIImage
-//    }
 }
 
 
