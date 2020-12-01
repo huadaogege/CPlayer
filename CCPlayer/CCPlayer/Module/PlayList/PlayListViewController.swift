@@ -23,14 +23,14 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-        updateData()
+//        updateData()
         
         initView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        updateData()
+        updateData()
         self.hidesBottomBarWhenPushed = false
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
         let rightButtonName = self.edit ? "完成":"编辑"
@@ -153,14 +153,16 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
 //                self.tableView.reloadData()
 //            }
 //        }
-        
-        playFileParser.getAllPHAssetFromSysytem { [self] (playmodels: [PlayModel]?) in
-            DispatchQueue.main.async {
-                dataItems = playmodels
-                self.tableView.reloadData()
+        MBProgressHUD.showLoadingMessage("正在加载数据")
+        DispatchQueue.global().async {
+            self.playFileParser.getAllPHAssetFromSysytem { [self] (playmodels: [PlayModel]?) in
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide()
+                    dataItems = playmodels
+                    self.tableView.reloadData()
+                }
             }
         }
-        
     }
     
     // tableViewDelegate 方法
