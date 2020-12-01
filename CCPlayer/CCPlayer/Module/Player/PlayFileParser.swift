@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 import AVFoundation
+import Photos
+import PhotosUI
 
 class PlayFileParser: NSObject {
     
@@ -74,5 +76,35 @@ class PlayFileParser: NSObject {
             print("Error: \(error)")
         }
         return String(format: "%.2f", size) + unit
+    }
+    
+    func getAllPHAssetFromSysytem(completion: @escaping (Array<PlayModel>)->())  {
+        var models = Array<PlayModel>()
+        var assets = Array<PHAsset>()
+        
+        let options = PHFetchOptions.init()
+        let assetsFetchResults:PHFetchResult = PHAsset.fetchAssets(with: options)
+        // 遍历，得到每一个图片资源asset，然后放到集合中
+        assetsFetchResults.enumerateObjects { (asset, index, stop) in
+            if asset.mediaType == .video {
+                let options = PHVideoRequestOptions()
+                options.version = PHVideoRequestOptionsVersion.current
+                options.deliveryMode = PHVideoRequestOptionsDeliveryMode.automatic
+                assets.append(asset)
+            }
+        }
+        
+        for asset in assets {
+            PHImageManager.default().requestAVAsset(forVideo: asset, options: nil, resultHandler: { (AVAsset, AVAudio, info) in
+                let icon = self.iconWithAVAsset(avasset: AVAsset!)
+                let avUrlAsset:AVURLAsset = AVAsset! as! AVURLAsset
+                let path = avUrlAsset.url.path
+                let playModel = PlayModel.init(name: "xxx", size: "xxx", time: "xxx", path: path, icon: icon)
+                models.append(playModel)
+                if models.count == assets.count {
+                    completion(models)
+                }
+            })
+        }
     }
 }

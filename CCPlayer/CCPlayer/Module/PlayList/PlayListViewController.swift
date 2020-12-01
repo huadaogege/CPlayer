@@ -16,18 +16,21 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
     var isPrivate:Bool = false
     var selectDataItems : Array<Any> = Array.init()
     let cfManager = CFileManager.init()
+    let playFileParser = PlayFileParser.init()
+    
     
     // override 方法
     override func viewDidLoad() {
         super.viewDidLoad()
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
         updateData()
+        
         initView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateData()
+//        updateData()
         self.hidesBottomBarWhenPushed = false
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
         let rightButtonName = self.edit ? "完成":"编辑"
@@ -151,8 +154,7 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
 //            }
 //        }
         
-        let photoAlbum = PhotoAlbumViewController.init()
-        photoAlbum.getAllPHAssetFromSysytem { [self] (playmodels: [PlayModel]?) in
+        playFileParser.getAllPHAssetFromSysytem { [self] (playmodels: [PlayModel]?) in
             dataItems = playmodels
             self.tableView.reloadData()
         }
