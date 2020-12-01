@@ -59,6 +59,7 @@ class PlayListCell: UITableViewCell {
         var snapImageView = UIImageView.init()
         snapImageView.backgroundColor = UIColor.lightGray
         snapImageView.frame = snapImageViewFrame
+        snapImageView.contentMode = .scaleAspectFill
         snapImageView.layer.cornerRadius = 4
         snapImageView.layer.masksToBounds = true
         return snapImageView

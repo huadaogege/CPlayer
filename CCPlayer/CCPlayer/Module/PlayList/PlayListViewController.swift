@@ -155,8 +155,10 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
 //        }
         
         playFileParser.getAllPHAssetFromSysytem { [self] (playmodels: [PlayModel]?) in
-            dataItems = playmodels
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                dataItems = playmodels
+                self.tableView.reloadData()
+            }
         }
         
     }

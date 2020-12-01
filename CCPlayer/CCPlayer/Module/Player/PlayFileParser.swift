@@ -11,7 +11,12 @@ import AVFoundation
 import Photos
 import PhotosUI
 
+extension UIImage {
+    
+}
+
 class PlayFileParser: NSObject {
+    
     
     func iconOfVideo(filePath:String) -> UIImage {
         let url = URL(fileURLWithPath: filePath)
@@ -79,6 +84,7 @@ class PlayFileParser: NSObject {
     }
     
     func getAllPHAssetFromSysytem(completion: @escaping (Array<PlayModel>)->())  {
+        
         var models = Array<PlayModel>()
         var assets = Array<PHAsset>()
         
