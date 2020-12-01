@@ -153,6 +153,12 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
 //                self.tableView.reloadData()
 //            }
 //        }
+        
+        PhotoManager.videoInfoOfsystem {(playmodels) -> Void in
+            
+        }
+        
+        
         MBProgressHUD.showLoadingMessage("正在加载数据")
         DispatchQueue.global().async {
             self.playFileParser.getAllPHAssetFromSysytem { [self] (playmodels: [PlayModel]?) in

@@ -16,7 +16,7 @@ class PlayListCell: UITableViewCell {
     
     weak var delegate:PlayListCellDelegate?
     
-    var model:PlayModel = PlayModel(name: "", size: "", time: "", path: "", icon: UIImage.init())
+    var playModel = PlayModel.init()
     
     var screenObject = UIScreen.main.bounds
     let selectButtonFrame = CGRect(x: -30, y: 45, width: 20, height: 20)
@@ -87,7 +87,7 @@ class PlayListCell: UITableViewCell {
     }()
     
     func setModel(model:PlayModel) {
-        self.model = model
+        self.playModel = model
         self.snapImageView.image = model.icon
         self.nameLabel.text = model.name
         self.sizeLabel.text = model.size
@@ -122,7 +122,7 @@ class PlayListCell: UITableViewCell {
     @objc func selectButtonClick() {
         self.selectButton.isSelected = !self.selectButton.isSelected
         if (self.delegate != nil) {
-            self.delegate?.selectCell(model: self.model, selected: self.selectButton.isSelected)
+            self.delegate?.selectCell(model: self.playModel, selected: self.selectButton.isSelected)
         }
     }
 }

@@ -5,3 +5,4 @@
 #import "OCClass.h"
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+TJ.h"
+#import "PhotoManager.h"

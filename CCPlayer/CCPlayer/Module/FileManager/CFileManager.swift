@@ -55,8 +55,13 @@ class CFileManager: NSObject {
             let time = parser.totalTimeOfVideo(filePath: filePath)
             let size = parser.sizeOfVideo(filePath: filePath)
             
-            let model = PlayModel.init(name: name, size: size, time: time, path:filePath , icon: image)
-            models.append(model)
+            let playModel = PlayModel.init()
+            playModel.name = name
+            playModel.size = size
+            playModel.time = time
+            playModel.path = filePath
+            playModel.icon = image
+            models.append(playModel)
         }
         return models
     }

@@ -8,10 +8,20 @@
 import Foundation
 import UIKit
 
-struct PlayModel {
-    var name : String
-    var size : String
-    var time : String
-    var path : String
-    var icon : UIImage
+class PlayModel: NSObject {
+    var name:String = ""
+    var size:String = ""
+    var time:String = ""
+    var path:String = ""
+    var icon:UIImage = UIImage.init()
+    
+//    struct PlayModel {
+//        var name : String
+//        var size : String
+//        var time : String
+//        var path : String
+//        var icon : UIImage
+//    }
 }
+
+

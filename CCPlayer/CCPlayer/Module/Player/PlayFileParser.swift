@@ -102,10 +102,17 @@ class PlayFileParser: NSObject {
         
         for asset in assets {
             PHImageManager.default().requestAVAsset(forVideo: asset, options: nil, resultHandler: { (AVAsset, AVAudio, info) in
-                let icon = self.iconWithAVAsset(avasset: AVAsset!)
+                _ = self.iconWithAVAsset(avasset: AVAsset!)
                 let avUrlAsset:AVURLAsset = AVAsset! as! AVURLAsset
                 let path = avUrlAsset.url.path
-                let playModel = PlayModel.init(name: "xxx", size: "xxx", time: "xxx", path: path, icon: icon)
+                let playModel = PlayModel.init()
+//                name: "xxx", size: "xxx", time: "xxx", path: path, icon: icon
+                playModel.name = "xxx"
+                playModel.size = "xxx"
+                playModel.time = "xxx"
+                playModel.path = path
+                playModel.icon = UIImage.init()
+                
                 models.append(playModel)
                 if models.count == assets.count {
                     completion(models)

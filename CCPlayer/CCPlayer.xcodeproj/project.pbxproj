@@ -31,6 +31,7 @@
 		E99AC1C72564121100A3DC20 /* CCPlayerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99AC1C62564121100A3DC20 /* CCPlayerUITests.swift */; };
 		E99AC1E12565636500A3DC20 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99AC1E02565636500A3DC20 /* SettingViewController.swift */; };
 		E99AC1E92566BE0000A3DC20 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99AC1E82566BE0000A3DC20 /* SettingCell.swift */; };
+		E9E887C425768B0100C38BD4 /* PhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E887C325768B0100C38BD4 /* PhotoManager.m */; };
 		E9EB474D25765A72007E0D56 /* OCClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB474C25765A72007E0D56 /* OCClass.m */; };
 		E9EB475925765B12007E0D56 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB475625765B12007E0D56 /* MBProgressHUD.m */; };
 		E9EB475A25765B12007E0D56 /* MBProgressHUD+TJ.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB475825765B12007E0D56 /* MBProgressHUD+TJ.m */; };
@@ -84,6 +85,9 @@
 		E99AC1C82564121100A3DC20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E99AC1E02565636500A3DC20 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		E99AC1E82566BE0000A3DC20 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		E9E887C225768B0100C38BD4 /* PhotoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoManager.h; sourceTree = "<group>"; };
+		E9E887C325768B0100C38BD4 /* PhotoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoManager.m; sourceTree = "<group>"; };
+		E9E887ED2576947700C38BD4 /* CCPlayer-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CCPlayer-Swift.h"; sourceTree = "<group>"; };
 		E9EB474A25765A71007E0D56 /* CCPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CCPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
 		E9EB474B25765A72007E0D56 /* OCClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCClass.h; sourceTree = "<group>"; };
 		E9EB474C25765A72007E0D56 /* OCClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCClass.m; sourceTree = "<group>"; };
@@ -273,6 +277,9 @@
 				E9EB475125765ACF007E0D56 /* MBProgressHUD */,
 				E9EB474B25765A72007E0D56 /* OCClass.h */,
 				E9EB474C25765A72007E0D56 /* OCClass.m */,
+				E9E887C225768B0100C38BD4 /* PhotoManager.h */,
+				E9E887C325768B0100C38BD4 /* PhotoManager.m */,
+				E9E887ED2576947700C38BD4 /* CCPlayer-Swift.h */,
 				E9EB474A25765A71007E0D56 /* CCPlayer-Bridging-Header.h */,
 			);
 			path = Objc;
@@ -428,6 +435,7 @@
 				E97928C6256A3329007BA26F /* ConfigCenter.swift in Sources */,
 				E9017FEA2569591F00B3FCB2 /* PlayModel.swift in Sources */,
 				E99AC1A92564120F00A3DC20 /* ViewController.swift in Sources */,
+				E9E887C425768B0100C38BD4 /* PhotoManager.m in Sources */,
 				E99AC1A52564120F00A3DC20 /* AppDelegate.swift in Sources */,
 				E97928CB256A336F007BA26F /* StoreUserDefaultManager.swift in Sources */,
 				E97928B42569EA97007BA26F /* PlayOnlineViewController.swift in Sources */,
@@ -619,7 +627,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = F3D66462B2;
+				GCC_ENABLE_KERNEL_DEVELOPMENT = NO;
 				INFOPLIST_FILE = CCPlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -642,7 +652,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = F3D66462B2;
+				GCC_ENABLE_KERNEL_DEVELOPMENT = NO;
 				INFOPLIST_FILE = CCPlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
