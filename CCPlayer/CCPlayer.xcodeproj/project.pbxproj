@@ -11,7 +11,6 @@
 		E9017FD22568F4DC00B3FCB2 /* PlayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9017FD12568F4DC00B3FCB2 /* PlayListViewController.swift */; };
 		E9017FDC2569065700B3FCB2 /* PlayListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9017FDB2569065700B3FCB2 /* PlayListCell.swift */; };
 		E9017FE22569587000B3FCB2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9017FE12569587000B3FCB2 /* PlayerViewController.swift */; };
-		E9017FEA2569591F00B3FCB2 /* PlayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9017FE92569591F00B3FCB2 /* PlayModel.swift */; };
 		E9496F47256EA97100CF27C0 /* CFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9496F46256EA97100CF27C0 /* CFileManager.swift */; };
 		E96F2EC725729F43005416C3 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96F2EC625729F43005416C3 /* CommonUtil.swift */; };
 		E96F2EE42573CAE1005416C3 /* PhotoAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96F2EE32573CAE1005416C3 /* PhotoAlbumViewController.swift */; };
@@ -32,6 +31,7 @@
 		E99AC1E12565636500A3DC20 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99AC1E02565636500A3DC20 /* SettingViewController.swift */; };
 		E99AC1E92566BE0000A3DC20 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99AC1E82566BE0000A3DC20 /* SettingCell.swift */; };
 		E9E887C425768B0100C38BD4 /* PhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E887C325768B0100C38BD4 /* PhotoManager.m */; };
+		E9E888012577D5F200C38BD4 /* PlayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E888002577D5F200C38BD4 /* PlayModel.m */; };
 		E9EB474D25765A72007E0D56 /* OCClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB474C25765A72007E0D56 /* OCClass.m */; };
 		E9EB475925765B12007E0D56 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB475625765B12007E0D56 /* MBProgressHUD.m */; };
 		E9EB475A25765B12007E0D56 /* MBProgressHUD+TJ.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB475825765B12007E0D56 /* MBProgressHUD+TJ.m */; };
@@ -59,7 +59,6 @@
 		E9017FD12568F4DC00B3FCB2 /* PlayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListViewController.swift; sourceTree = "<group>"; };
 		E9017FDB2569065700B3FCB2 /* PlayListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListCell.swift; sourceTree = "<group>"; };
 		E9017FE12569587000B3FCB2 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
-		E9017FE92569591F00B3FCB2 /* PlayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayModel.swift; sourceTree = "<group>"; };
 		E9496F46256EA97100CF27C0 /* CFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFileManager.swift; sourceTree = "<group>"; };
 		E96F2EC625729F43005416C3 /* CommonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
 		E96F2EE32573CAE1005416C3 /* PhotoAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +86,8 @@
 		E99AC1E82566BE0000A3DC20 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		E9E887C225768B0100C38BD4 /* PhotoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoManager.h; sourceTree = "<group>"; };
 		E9E887C325768B0100C38BD4 /* PhotoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoManager.m; sourceTree = "<group>"; };
+		E9E887FF2577D5F200C38BD4 /* PlayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayModel.h; sourceTree = "<group>"; };
+		E9E888002577D5F200C38BD4 /* PlayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayModel.m; sourceTree = "<group>"; };
 		E9EB474A25765A71007E0D56 /* CCPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CCPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
 		E9EB474B25765A72007E0D56 /* OCClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCClass.h; sourceTree = "<group>"; };
 		E9EB474C25765A72007E0D56 /* OCClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCClass.m; sourceTree = "<group>"; };
@@ -143,7 +144,6 @@
 			children = (
 				E9017FD12568F4DC00B3FCB2 /* PlayListViewController.swift */,
 				E9017FDB2569065700B3FCB2 /* PlayListCell.swift */,
-				E9017FE92569591F00B3FCB2 /* PlayModel.swift */,
 			);
 			path = PlayList;
 			sourceTree = "<group>";
@@ -278,6 +278,8 @@
 				E9EB474C25765A72007E0D56 /* OCClass.m */,
 				E9E887C225768B0100C38BD4 /* PhotoManager.h */,
 				E9E887C325768B0100C38BD4 /* PhotoManager.m */,
+				E9E887FF2577D5F200C38BD4 /* PlayModel.h */,
+				E9E888002577D5F200C38BD4 /* PlayModel.m */,
 				E9EB474A25765A71007E0D56 /* CCPlayer-Bridging-Header.h */,
 			);
 			path = Objc;
@@ -431,13 +433,13 @@
 				E96F2EE42573CAE1005416C3 /* PhotoAlbumViewController.swift in Sources */,
 				E97928E0256AB095007BA26F /* PlayFileParser.swift in Sources */,
 				E97928C6256A3329007BA26F /* ConfigCenter.swift in Sources */,
-				E9017FEA2569591F00B3FCB2 /* PlayModel.swift in Sources */,
 				E99AC1A92564120F00A3DC20 /* ViewController.swift in Sources */,
 				E9E887C425768B0100C38BD4 /* PhotoManager.m in Sources */,
 				E99AC1A52564120F00A3DC20 /* AppDelegate.swift in Sources */,
 				E97928CB256A336F007BA26F /* StoreUserDefaultManager.swift in Sources */,
 				E97928B42569EA97007BA26F /* PlayOnlineViewController.swift in Sources */,
 				E99AC1A72564120F00A3DC20 /* SceneDelegate.swift in Sources */,
+				E9E888012577D5F200C38BD4 /* PlayModel.m in Sources */,
 				E9EB474D25765A72007E0D56 /* OCClass.m in Sources */,
 				E9EB475925765B12007E0D56 /* MBProgressHUD.m in Sources */,
 				E9017FCD2568F0A600B3FCB2 /* MainViewController.swift in Sources */,

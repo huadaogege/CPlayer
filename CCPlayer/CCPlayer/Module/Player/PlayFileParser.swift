@@ -106,7 +106,6 @@ class PlayFileParser: NSObject {
                 let avUrlAsset:AVURLAsset = AVAsset! as! AVURLAsset
                 let path = avUrlAsset.url.path
                 let playModel = PlayModel.init()
-//                name: "xxx", size: "xxx", time: "xxx", path: path, icon: icon
                 playModel.name = "xxx"
                 playModel.size = "xxx"
                 playModel.time = "xxx"

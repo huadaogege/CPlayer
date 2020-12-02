@@ -6,3 +6,4 @@
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+TJ.h"
 #import "PhotoManager.h"
+#import "PlayModel.h"

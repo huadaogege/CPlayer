@@ -14,6 +14,7 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
     var dataItems : Array<Any>! = Array.init()
     var edit:Bool = false
     var isPrivate:Bool = false
+    var isPhotoAlbum:Bool = false
     var selectDataItems : Array<Any> = Array.init()
     let cfManager = CFileManager.init()
     let playFileParser = PlayFileParser.init()
@@ -133,6 +134,10 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         self.isPrivate = isPrivate
     }
     
+    func setIsPhotoAlbum(isPhotoAlbum:Bool) {
+        self.isPhotoAlbum = isPhotoAlbum
+    }
+    
     @objc func rightButtonClick() {
         if self.edit {
             self.navigationController?.dismiss(animated: true, completion: {})
@@ -147,24 +152,22 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func updateData() {
-//        DispatchQueue.global().async { [self] in
-//            dataItems = cfManager.preparePlayModels(isPrivate: self.isPrivate)
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
-        
-        PhotoManager.videoInfoOfsystem {(playmodels) -> Void in
-            
-        }
-        
-        
         MBProgressHUD.showLoadingMessage("正在加载数据")
-        DispatchQueue.global().async {
-            self.playFileParser.getAllPHAssetFromSysytem { [self] (playmodels: [PlayModel]?) in
+        if self.isPhotoAlbum {
+            DispatchQueue.global().async {
+                PhotoManager.videoInfoOfsystem { (playmodels) in
+                    DispatchQueue.main.async {
+                        MBProgressHUD.hide()
+                        self.dataItems = playmodels
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        } else {
+            DispatchQueue.global().async { [self] in
+                dataItems = cfManager.preparePlayModels(isPrivate: self.isPrivate)
                 DispatchQueue.main.async {
                     MBProgressHUD.hide()
-                    dataItems = playmodels
                     self.tableView.reloadData()
                 }
             }
