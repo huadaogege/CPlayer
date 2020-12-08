@@ -9,9 +9,17 @@ import Foundation
 import UIKit
 import AVKit
 
+enum PlayModa:Int {
+    case Unknown = 0,
+         portrait = 1,
+         LandScape = 2
+}
+
 class PlayerViewController: UIViewController {
     
+    var playMode:PlayModa = PlayModa.portrait
     var screenObject = UIScreen.main.bounds
+    var superView:UIView!
     
     var model:PlayModel!
     var player = AVPlayer()
@@ -23,8 +31,8 @@ class PlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
         initView()
+        setPlayModaUI(moda: PlayModa.portrait)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,6 +116,41 @@ class PlayerViewController: UIViewController {
         return button
     }()
     
+    
+    func setPlayModaUI(moda:PlayModa) {
+        self.playMode = moda
+        if self.playMode == PlayModa.portrait {
+            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+            
+            if self.model.bounds.width > self.model.bounds.height {
+                let width = superView.frame.size.width
+                let heigt = width*(self.model.bounds.height/self.model.bounds.width)
+                self.playerLayer.frame = CGRect(x: 0,
+                                                y: (superView.frame.size.height - heigt)/2.0,
+                                                width: width,
+                                                height: heigt)
+            } else {
+                let height = superView.frame.size.height
+                let width = height*(self.model.bounds.width/self.model.bounds.height)
+                self.playerLayer.frame = CGRect(x: (superView.frame.size.width - width)/2.0,
+                                                y: 0,
+                                                width: width,
+                                                height: height)
+            }
+        } else if self.playMode == PlayModa.LandScape {
+//            UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+//            let width = superView.frame.size.height
+//            let height = width / scale
+//
+//
+//            self.playerLayer.frame = CGRect(x: 0,
+//                                            y: (superView.frame.size.width - height)/2.0,
+//                                            width: width,
+//                                            height: height)
+//
+        }
+    }
+    
     @objc func singleTap() {
         let hidden = self.controlView.isHidden
         self.controlView.isHidden = !hidden
@@ -115,6 +158,7 @@ class PlayerViewController: UIViewController {
     }
     
     func initPlayer(filePath:String, superView:UIView) {
+        self.superView = superView
         let url = NSURL(fileURLWithPath: filePath)
         
         let playItem = AVPlayerItem(url: url as URL)

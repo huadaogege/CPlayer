@@ -9,22 +9,28 @@ import Foundation
 import UIKit
 import AVFoundation
 
+enum Type:Int {
+    case Unknown = 0,
+         FileList = 1,
+         FileEditList = 2,
+         PrivateList = 3,
+         PhotoAlbumList = 4
+}
+
 class PlayListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PlayListCellDelegate {
     var screenObject = UIScreen.main.bounds
     var dataItems : Array<Any>! = Array.init()
-    var edit:Bool = false
-    var isPrivate:Bool = false
-    var isPhotoAlbum:Bool = false
+    
+    var vcType = Type.Unknown
+    
     var selectDataItems : Array<Any> = Array.init()
     let cfManager = CFileManager.init()
     let playFileParser = PlayFileParser.init()
-    
     
     // override 方法
     override func viewDidLoad() {
         super.viewDidLoad()
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-//        updateData()
         
         initView()
     }
@@ -34,10 +40,18 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         updateData()
         self.hidesBottomBarWhenPushed = false
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-        let rightButtonName = self.edit ? "完成":"编辑"
-        
-        let rightButton = UIBarButtonItem(title: rightButtonName, style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButtonClick))
+        if self.vcType == Type.FileList {
+            let superVC:UIViewController = self.view.superview?.next as! UIViewController
+            
+            let rightButtonName = (self.vcType == Type.FileEditList) ? "完成":"编辑"
+            let rightButton = UIBarButtonItem(title: rightButtonName, style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButtonClick))
+            superVC.navigationItem.rightBarButtonItem = rightButton
+        }
+        if self.vcType == Type.FileEditList {
+            let rightButtonName = (self.vcType == Type.FileEditList) ? "完成":"编辑"
+            let rightButton = UIBarButtonItem(title: rightButtonName, style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButtonClick))
             self.navigationItem.rightBarButtonItem = rightButton
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -51,11 +65,11 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
     
     // UI界面创建
     func initView() {
-        let title = self.isPrivate ? "加密列表":"播放列表"
+        let title = (self.vcType == Type.PrivateList) ? "加密列表":"播放列表"
         self.navigationController?.title = title
         self.view.backgroundColor = UIColor.cyan
         self.view.addSubview(tableView)
-        if self.edit {
+        if (self.vcType == Type.FileEditList) {
             self.view.addSubview(editBottomView)
         }
     }
@@ -64,6 +78,7 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         var tableView = UITableView(frame: CGRect(x: 0, y: 0, width: screenObject.width, height: screenObject.height), style: UITableView.Style.grouped)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = UIColor.yellow
         return tableView
     }()
     
@@ -125,25 +140,20 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    // 调用方法
-    func setVCType(edit:Bool) {
-        self.edit = edit
-    }
-    
-    func setIsPrivate(isPrivate:Bool) {
-        self.isPrivate = isPrivate
-    }
-    
-    func setIsPhotoAlbum(isPhotoAlbum:Bool) {
-        self.isPhotoAlbum = isPhotoAlbum
+    func setType(type:Type) {
+        self.vcType = type
     }
     
     @objc func rightButtonClick() {
-        if self.edit {
+        if (self.vcType == Type.FileEditList) {
             self.navigationController?.dismiss(animated: true, completion: {})
         } else {
+            if self.dataItems.count == 0 {
+                MBProgressHUD.showError("播放列表为空")
+                return
+            }
             let playListVC = PlayListViewController()
-            playListVC.setVCType(edit: true)
+            playListVC.setType(type: Type.FileEditList)
             let playListNav = UINavigationController.init(rootViewController: playListVC)
             
             playListNav.modalPresentationStyle = UIModalPresentationStyle.fullScreen
@@ -153,7 +163,7 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
     
     func updateData() {
         MBProgressHUD.showLoadingMessage("正在加载数据")
-        if self.isPhotoAlbum {
+        if (self.vcType == Type.PhotoAlbumList) {
             DispatchQueue.global().async {
                 PhotoManager.videoInfoOfsystem { (playmodels) in
                     DispatchQueue.main.async {
@@ -165,7 +175,8 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
             }
         } else {
             DispatchQueue.global().async { [self] in
-                dataItems = cfManager.preparePlayModels(isPrivate: self.isPrivate)
+                let isPrivate = (self.vcType == Type.PrivateList)
+                dataItems = cfManager.preparePlayModels(isPrivate: isPrivate)
                 DispatchQueue.main.async {
                     MBProgressHUD.hide()
                     self.tableView.reloadData()
@@ -198,7 +209,7 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         let model = self.dataItems[indexPath.row]
         cell.setModel(model: model as! PlayModel)
         cell?.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
-        cell.setEditing(isEdit: self.edit)
+        cell.setEditing(isEdit: (self.vcType == Type.FileEditList))
         if self.selectDataItems.count == self.dataItems.count {
             cell.selectButton.isSelected = true
         } else if self.selectDataItems.count == 0 {
@@ -208,7 +219,7 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if self.edit {
+        if (self.vcType == Type.FileEditList) {
             return
         }
         let model = self.dataItems[indexPath.row]
@@ -230,6 +241,5 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
             self.selectDataItems.remove(at: index!)
         }
     }
-    
     
 }

@@ -44,7 +44,7 @@ class PrivateSettingViewController: UIViewController, PasswordViewDelegate {
             if savedPwd == password {
                 self.pwdView.removeFromSuperview()
                 let playListVC = PlayListViewController.init()
-                playListVC.setIsPrivate(isPrivate: true)
+                playListVC.setType(type: Type.PrivateList)
                 self.addChild(playListVC)
                 self.view.addSubview(playListVC.view)
             } else {

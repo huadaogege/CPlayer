@@ -27,6 +27,9 @@ class CFileManager: NSObject {
         var path = url.path
         if isPrivate {
             path = path + "/privatePath"
+            if !manager.fileExists(atPath: path) {
+                try! manager.createDirectory(at: URL(fileURLWithPath: path), withIntermediateDirectories: true, attributes: nil)
+            }
         }
         let contentsOfPath:Array<String> = try! manager.contentsOfDirectory(atPath: path)
         for fileName in contentsOfPath {
@@ -54,6 +57,7 @@ class CFileManager: NSObject {
             let name = parser.nameOfVideo(filePath: filePath)
             let time = parser.totalTimeOfVideo(filePath: filePath)
             let size = parser.sizeOfVideo(filePath: filePath)
+            let videFrameBounds = parser.videoFrameBounds(filePath: filePath)
             
             let playModel = PlayModel.init()
             playModel.name = name
@@ -61,6 +65,7 @@ class CFileManager: NSObject {
             playModel.time = time
             playModel.path = filePath
             playModel.icon = image
+            playModel.bounds = videFrameBounds
             models.append(playModel)
         }
         return models

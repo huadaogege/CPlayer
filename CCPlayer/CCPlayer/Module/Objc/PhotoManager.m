@@ -56,6 +56,16 @@
             CGImageRelease(image);
             model.icon = thumb;
             
+            NSArray *array = asset.tracks;
+            CGSize videoSize = CGSizeZero;
+            for (AVAssetTrack *track in array) {
+                if ([track.mediaType isEqualToString:AVMediaTypeVideo]) {
+                    videoSize = track.naturalSize;
+//                    break;
+                }
+            }
+            model.bounds = videoSize;
+            
             [videoModels addObject:model];
             if (videoModels.count == videoAssets.count) {
                 if (block) {

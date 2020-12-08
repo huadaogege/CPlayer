@@ -83,40 +83,16 @@ class PlayFileParser: NSObject {
         return String(format: "%.2f", size) + unit
     }
     
-    func getAllPHAssetFromSysytem(completion: @escaping (Array<PlayModel>)->())  {
-        
-        var models = Array<PlayModel>()
-        var assets = Array<PHAsset>()
-        
-        let options = PHFetchOptions.init()
-        let assetsFetchResults:PHFetchResult = PHAsset.fetchAssets(with: options)
-        // 遍历，得到每一个图片资源asset，然后放到集合中
-        assetsFetchResults.enumerateObjects { (asset, index, stop) in
-            if asset.mediaType == .video {
-                let options = PHVideoRequestOptions()
-                options.version = PHVideoRequestOptionsVersion.current
-                options.deliveryMode = PHVideoRequestOptionsDeliveryMode.automatic
-                assets.append(asset)
+    func videoFrameBounds(filePath:String) -> CGSize {
+        let url = URL(fileURLWithPath: filePath)
+        let asset = AVURLAsset.init(url: url, options: nil)
+        var videoSize = CGSize()
+        for track  in asset.tracks {
+            if track.mediaType == AVMediaType.video {
+                videoSize = track.naturalSize
+                return videoSize
             }
         }
-        
-        for asset in assets {
-            PHImageManager.default().requestAVAsset(forVideo: asset, options: nil, resultHandler: { (AVAsset, AVAudio, info) in
-                _ = self.iconWithAVAsset(avasset: AVAsset!)
-                let avUrlAsset:AVURLAsset = AVAsset! as! AVURLAsset
-                let path = avUrlAsset.url.path
-                let playModel = PlayModel.init()
-                playModel.name = "xxx"
-                playModel.size = "xxx"
-                playModel.time = "xxx"
-                playModel.path = path
-                playModel.icon = UIImage.init()
-                
-                models.append(playModel)
-                if models.count == assets.count {
-                    completion(models)
-                }
-            })
-        }
+        return CGSize(width: 0, height: 0)
     }
 }
