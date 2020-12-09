@@ -64,7 +64,11 @@ class PlayerViewController: UIViewController {
     }
     
     lazy var controlView = {() -> UIView in
-        let controlView = UIView.init(frame: CGRect(x: 0, y: screenObject.width - 80, width: screenObject.height, height: 60))
+        let controlView = UIView.init(frame: CGRect(x: 0,
+                                                    y: screenObject.width - 80,
+                                                    width: screenObject.height,
+                                                    height: 60))
+        controlView.backgroundColor = UIColor.red
         controlView.addSubview(self.slider)
         controlView.addSubview(self.loadTimeLabel)
         controlView.addSubview(self.totalTimeLabel)

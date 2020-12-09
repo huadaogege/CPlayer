@@ -7,3 +7,4 @@
 #import "MBProgressHUD+TJ.h"
 #import "PhotoManager.h"
 #import "PlayModel.h"
+#import "OPlayerViewController.h"

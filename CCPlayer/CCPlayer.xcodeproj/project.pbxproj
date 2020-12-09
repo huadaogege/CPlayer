@@ -20,6 +20,7 @@
 		E97928CB256A336F007BA26F /* StoreUserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97928CA256A336F007BA26F /* StoreUserDefaultManager.swift */; };
 		E97928D0256A3E99007BA26F /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97928CF256A3E99007BA26F /* PasswordView.swift */; };
 		E97928E0256AB095007BA26F /* PlayFileParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97928DF256AB095007BA26F /* PlayFileParser.swift */; };
+		E99521C325811AA40005D18C /* OPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99521C225811AA40005D18C /* OPlayerViewController.m */; };
 		E99AC1A52564120F00A3DC20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99AC1A42564120F00A3DC20 /* AppDelegate.swift */; };
 		E99AC1A72564120F00A3DC20 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99AC1A62564120F00A3DC20 /* SceneDelegate.swift */; };
 		E99AC1A92564120F00A3DC20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99AC1A82564120F00A3DC20 /* ViewController.swift */; };
@@ -69,6 +70,8 @@
 		E97928CA256A336F007BA26F /* StoreUserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreUserDefaultManager.swift; sourceTree = "<group>"; };
 		E97928CF256A3E99007BA26F /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
 		E97928DF256AB095007BA26F /* PlayFileParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayFileParser.swift; sourceTree = "<group>"; };
+		E99521C125811AA40005D18C /* OPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPlayerViewController.h; sourceTree = "<group>"; };
+		E99521C225811AA40005D18C /* OPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPlayerViewController.m; sourceTree = "<group>"; };
 		E99AC1A12564120F00A3DC20 /* CCPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99AC1A42564120F00A3DC20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E99AC1A62564120F00A3DC20 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -279,6 +282,8 @@
 				E9EB475125765ACF007E0D56 /* MBProgressHUD */,
 				E9EB474B25765A72007E0D56 /* OCClass.h */,
 				E9EB474C25765A72007E0D56 /* OCClass.m */,
+				E99521C125811AA40005D18C /* OPlayerViewController.h */,
+				E99521C225811AA40005D18C /* OPlayerViewController.m */,
 				E9E887C225768B0100C38BD4 /* PhotoManager.h */,
 				E9E887C325768B0100C38BD4 /* PhotoManager.m */,
 				E9E887FF2577D5F200C38BD4 /* PlayModel.h */,
@@ -444,6 +449,7 @@
 				E97928B42569EA97007BA26F /* PlayOnlineViewController.swift in Sources */,
 				E99AC1A72564120F00A3DC20 /* SceneDelegate.swift in Sources */,
 				E9E888012577D5F200C38BD4 /* PlayModel.m in Sources */,
+				E99521C325811AA40005D18C /* OPlayerViewController.m in Sources */,
 				E9EB474D25765A72007E0D56 /* OCClass.m in Sources */,
 				E9EB475925765B12007E0D56 /* MBProgressHUD.m in Sources */,
 				E9017FCD2568F0A600B3FCB2 /* MainViewController.swift in Sources */,

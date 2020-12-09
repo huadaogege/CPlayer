@@ -222,6 +222,15 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         if (self.vcType == Type.FileEditList) {
             return
         }
+        
+        let model1 = self.dataItems[indexPath.row]
+        let playVC1 = OPlayerViewController.init(playModel: model1 as! PlayModel)
+        self.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(playVC1, animated: true)
+        self.hidesBottomBarWhenPushed = false
+        return
+        
+        
         let model = self.dataItems[indexPath.row]
         let playVC = PlayerViewController()
         playVC.initModel(model as! PlayModel)
