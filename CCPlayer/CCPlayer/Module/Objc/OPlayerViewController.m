@@ -19,6 +19,7 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
 @property (nonatomic, assign) BOOL isFullScreen;//记录是否全屏
 @property (nonatomic, strong) AVPlayer *player;
 @property (nonatomic, strong) AVPlayerLayer *playLayer;
+@property (nonatomic, strong) UIView *controlView;
 
 
 @property (nonatomic, assign) UIInterfaceOrientation lastInterfaceOrientation;
@@ -40,7 +41,7 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-//    [self.playerView.layer addSublayer:self.playLayer];
+    [self.playerView.layer addSublayer:self.playLayer];
     self.playLayer.frame = self.playerView.frame;
     [self.playerView addSubview:self.btnFullScreen];
     self.btnFullScreen.frame = CGRectMake(self.playerView.frame.size.width - 50,
@@ -48,6 +49,12 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
                                           50,
                                           40);
     [self.view addSubview:self.playerView];
+    
+    self.controlView.frame = CGRectMake(0,
+                                        self.playerView.frame.size.height - 30,
+                                        self.playerView.frame.size.width,
+                                        30);
+    [self.playerView addSubview:self.controlView];
     
     if (@available(iOS 13.0, *)) {
         _lastInterfaceOrientation = [UIApplication sharedApplication].windows.firstObject.windowScene.interfaceOrientation;
@@ -81,6 +88,14 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
         _playLayer.videoGravity = AVLayerVideoGravityResizeAspect;
     }
     return _playLayer;
+}
+
+- (UIView *)controlView {
+    if (_controlView) {
+        _controlView = [[UIView alloc] init];
+        _controlView.backgroundColor = [UIColor blueColor];
+    }
+    return _controlView;
 }
 
 //设备方向改变的处理
