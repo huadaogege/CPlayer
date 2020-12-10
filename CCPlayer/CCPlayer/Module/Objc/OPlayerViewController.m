@@ -40,9 +40,13 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self.playerView.layer addSublayer:self.playLayer];
+//    [self.playerView.layer addSublayer:self.playLayer];
     self.playLayer.frame = self.playerView.frame;
     [self.playerView addSubview:self.btnFullScreen];
+    self.btnFullScreen.frame = CGRectMake(self.playerView.frame.size.width - 50,
+                                          self.playerView.frame.size.height - 40,
+                                          50,
+                                          40);
     [self.view addSubview:self.playerView];
     
     if (@available(iOS 13.0, *)) {
@@ -155,7 +159,13 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
     [UIView animateWithDuration:AnimationDuration animations:^{
         [self interfaceOrientation:UIInterfaceOrientationPortrait];
         self.playerView.frame = self.playerFrame;
-        self.playLayer.frame = CGRectMake(0, 0, self.playerView.bounds.size.width, self.playerView.bounds.size.height);
+        self.playLayer.frame = CGRectMake(0,
+                                          0,
+                                          self.playerView.bounds.size.width, self.playerView.bounds.size.height);
+        self.btnFullScreen.frame = CGRectMake(self.playerView.frame.size.width - 50,
+                                              self.playerView.frame.size.height - 40,
+                                              50,
+                                              40);
     } completion:^(BOOL finished) {
         
         [self.playerView removeFromSuperview];
@@ -182,6 +192,10 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
     
     self.playerView.frame = rectInWindow;
     [self.mainWindow addSubview:self.playerView];
+    self.btnFullScreen.frame = CGRectMake(self.playerView.frame.size.height - 50,
+                                          self.playerView.frame.size.width - 40,
+                                          50,
+                                          40);
     
     //执行旋转动画
     [UIView animateWithDuration:AnimationDuration animations:^{
@@ -200,13 +214,17 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
 
         self.playerView.center = CGPointMake(CGRectGetMidX(self.mainWindow.bounds), CGRectGetMidY(self.mainWindow.bounds));
         self.playLayer.frame = CGRectMake(0, 0, self.playerView.bounds.size.width, self.playerView.bounds.size.height);
-
-         
+        
+        self.btnFullScreen.frame = CGRectMake(self.playerView.frame.size.height - 50,
+                                              self.playerView.frame.size.width - 40,
+                                              50,
+                                              40);
     } completion:^(BOOL finished) {
        
         self.isFullScreen = YES;
         //调用以下方法后，系统会在合适的时间调用prefersStatusBarHidden方法，控制状态栏的显示和隐藏，可根据自己的产品控制显示逻辑
         [self setNeedsStatusBarAppearanceUpdate];
+        
     }];
 }
 
@@ -294,7 +312,6 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
                                            CGRectGetWidth(self.view.bounds),
                                            CGRectGetWidth(self.view.bounds) * 9 / 16.f);
         }
-        
     }
     return _playerView;
 }
@@ -305,7 +322,6 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
         [_btnFullScreen setTitle:@"全屏" forState:UIControlStateNormal];
         _btnFullScreen.backgroundColor = [UIColor orangeColor];
         [_btnFullScreen addTarget:self action:@selector(fullScreenAction:) forControlEvents:UIControlEventTouchUpInside];
-        _btnFullScreen.frame = CGRectMake(50, 80, 150, 50);
     }
     return _btnFullScreen;
 }
