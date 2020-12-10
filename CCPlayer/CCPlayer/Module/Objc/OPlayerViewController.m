@@ -56,14 +56,8 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
     }
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handleDeviceOrientationChange:)
                                                 name:UIDeviceOrientationDidChangeNotification object:nil];
-    
-
-    
-    
     [self.player play];
-    
 }
-
 
 - (AVPlayer *)player {
     if (!_player) {
@@ -141,36 +135,27 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    
     return UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscapeLeft|UIInterfaceOrientationMaskLandscapeRight;
 }
-
-
 
 #pragma mark - private method
 
 - (void)fullScreenAction:(UIButton *)sender {
-    
     if (self.isFullScreen) {//如果是全屏，点击按钮进入小屏状态
         [self changeToOriginalFrame];
     } else {//不是全屏，点击按钮进入全屏状态
         [self changeToFullScreen];
     }
-    
 }
 
 - (void)changeToOriginalFrame {
-    
     if (!self.isFullScreen) {
         return;
     }
-
     [UIView animateWithDuration:AnimationDuration animations:^{
-        
-        
         [self interfaceOrientation:UIInterfaceOrientationPortrait];
         self.playerView.frame = self.playerFrame;
-        
+        self.playLayer.frame = CGRectMake(0, 0, self.playerView.bounds.size.width, self.playerView.bounds.size.height);
     } completion:^(BOOL finished) {
         
         [self.playerView removeFromSuperview];
@@ -212,12 +197,11 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
                                             0,
                                             CGRectGetHeight(self.mainWindow.bounds),
                                             CGRectGetWidth(self.mainWindow.bounds));
-        self.playLayer.bounds = CGRectMake(0,
-                                           0,
-                                           CGRectGetHeight(self.mainWindow.bounds),
-                                           CGRectGetWidth(self.mainWindow.bounds));
+
         self.playerView.center = CGPointMake(CGRectGetMidX(self.mainWindow.bounds), CGRectGetMidY(self.mainWindow.bounds));
-        
+        self.playLayer.frame = CGRectMake(0, 0, self.playerView.bounds.size.width, self.playerView.bounds.size.height);
+
+         
     } completion:^(BOOL finished) {
        
         self.isFullScreen = YES;

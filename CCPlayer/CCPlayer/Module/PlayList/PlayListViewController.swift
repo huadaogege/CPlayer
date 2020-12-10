@@ -223,21 +223,10 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
             return
         }
         
-        let model1 = self.dataItems[indexPath.row]
-        let playVC1 = OPlayerViewController.init(playModel: model1 as! PlayModel)
-        self.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(playVC1, animated: true)
-        self.hidesBottomBarWhenPushed = false
-        return
-        
-        
         let model = self.dataItems[indexPath.row]
-        let playVC = PlayerViewController()
-        playVC.initModel(model as! PlayModel)
-        self.hidesBottomBarWhenPushed = true
-        
-        self.navigationController?.pushViewController(playVC, animated: true)
-        self.hidesBottomBarWhenPushed = false
+        let playVC = OPlayerViewController.init(playModel: model as! PlayModel)
+        playVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        self.present(playVC, animated: true) {}
     }
     
     func selectCell(model:PlayModel, selected:Bool) {
