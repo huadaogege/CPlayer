@@ -8,6 +8,7 @@
 #import "OPlayerViewController.h"
 #import <AVKit/AVKit.h>
 
+
 static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
 
 @interface OPlayerViewController ()
@@ -20,6 +21,7 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
 @property (nonatomic, strong) AVPlayer *player;
 @property (nonatomic, strong) AVPlayerLayer *playLayer;
 @property (nonatomic, strong) UIView *controlView;
+@property (nonatomic, strong) UISlider *slider;
 
 
 @property (nonatomic, assign) UIInterfaceOrientation lastInterfaceOrientation;
@@ -41,20 +43,26 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self.playerView.layer addSublayer:self.playLayer];
-    self.playLayer.frame = self.playerView.frame;
-    [self.playerView addSubview:self.btnFullScreen];
-    self.btnFullScreen.frame = CGRectMake(self.playerView.frame.size.width - 50,
-                                          self.playerView.frame.size.height - 40,
-                                          50,
-                                          40);
+    self.playerView.frame = CGRectMake(0,
+                                       kStatusSafeAreaTopHeight,
+                                       CGRectGetWidth(self.view.bounds),
+                                       CGRectGetWidth(self.view.bounds) * 9 / 16.f);
     [self.view addSubview:self.playerView];
     
-    self.controlView.frame = CGRectMake(0,
-                                        self.playerView.frame.size.height - 50,
-                                        self.playerView.frame.size.width,
-                                        50);
+    [self.playerView.layer addSublayer:self.playLayer];
+    self.playLayer.frame = CGRectMake(0,
+                                      0,
+                                      self.playerView.bounds.size.width,
+                                      self.playerView.bounds.size.height);
+    
     [self.playerView addSubview:self.controlView];
+    [self.controlView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.playerView);
+        make.bottom.equalTo(self.playerView);
+        make.size.mas_equalTo(CGSizeMake(self.playerView.frame.size.width, 50));
+    }];
+    
+    [self initControlView];
     
     if (@available(iOS 13.0, *)) {
         _lastInterfaceOrientation = [UIApplication sharedApplication].windows.firstObject.windowScene.interfaceOrientation;
@@ -98,6 +106,26 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
     return _controlView;
 }
 
+- (void)initControlView {
+    [self.controlView addSubview:self.btnFullScreen];
+    
+    [self.btnFullScreen mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.controlView);
+        make.bottom.equalTo(self.controlView);
+        make.size.mas_equalTo(CGSizeMake(60, 30));
+    }];
+    
+    [self.controlView addSubview:self.slider];
+}
+
+- (UISlider *)slider {
+    if (!_slider) {
+        _slider = [[UISlider alloc] init];
+        [_slider setValue:0];
+    }
+    return _slider;
+}
+
 //设备方向改变的处理
 - (void)handleDeviceOrientationChange:(NSNotification *)notification {
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
@@ -115,14 +143,12 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
             if (self.isFullScreen) {
                 [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];
             }
-            
             NSLog(@"屏幕向左横置");
             break;
         case UIDeviceOrientationLandscapeRight:
             if (self.isFullScreen) {
                 [self interfaceOrientation:UIInterfaceOrientationLandscapeLeft];
             }
-            
             NSLog(@"屏幕向右橫置");
             break;
         case UIDeviceOrientationPortrait:
@@ -176,25 +202,20 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
         self.playerView.frame = self.playerFrame;
         self.playLayer.frame = CGRectMake(0,
                                           0,
-                                          self.playerView.bounds.size.width, self.playerView.bounds.size.height);
-        self.btnFullScreen.frame = CGRectMake(self.playerView.frame.size.width - 50,
-                                              self.playerView.frame.size.height - 40,
-                                              50,
-                                              40);
-        self.controlView.frame = CGRectMake(0,
-                                            self.playerView.frame.size.height - 50,
-                                            self.playerView.frame.size.width,
-                                            50);
+                                          self.playerView.bounds.size.width,
+                                          self.playerView.bounds.size.height);
+        [self.controlView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.playerView);
+            make.bottom.equalTo(self.playerView);
+            make.size.mas_equalTo(CGSizeMake(self.playerView.frame.size.width, 50));
+        }];
     } completion:^(BOOL finished) {
-        
         [self.playerView removeFromSuperview];
-        
         [self.playerSuperView addSubview:self.playerView];
         self.isFullScreen = NO;
         //调用以下方法后，系统会在合适的时间调用prefersStatusBarHidden方法，控制状态栏的显示和隐藏，可根据自己的产品控制显示逻辑
         [self setNeedsStatusBarAppearanceUpdate];
     }];
-    
 }
 
 - (void)changeToFullScreen {
@@ -211,11 +232,6 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
     
     self.playerView.frame = rectInWindow;
     [self.mainWindow addSubview:self.playerView];
-    self.btnFullScreen.frame = CGRectMake(self.playerView.frame.size.height - 50,
-                                          self.playerView.frame.size.width - 40,
-                                          50,
-                                          40);
-    
     //执行旋转动画
     [UIView animateWithDuration:AnimationDuration animations:^{
         
@@ -232,16 +248,16 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
                                             CGRectGetWidth(self.mainWindow.bounds));
 
         self.playerView.center = CGPointMake(CGRectGetMidX(self.mainWindow.bounds), CGRectGetMidY(self.mainWindow.bounds));
-        self.playLayer.frame = CGRectMake(0, 0, self.playerView.bounds.size.width, self.playerView.bounds.size.height);
+        self.playLayer.frame = CGRectMake(0,
+                                          0,
+                                          self.playerView.bounds.size.width,
+                                          self.playerView.bounds.size.height);
         
-        self.btnFullScreen.frame = CGRectMake(self.playerView.frame.size.height - 50,
-                                              self.playerView.frame.size.width - 40,
-                                              50,
-                                              40);
-        self.controlView.frame = CGRectMake(0,
-                                            self.playerView.frame.size.width - 50,
-                                            self.playerView.frame.size.height,
-                                            50);
+        [self.controlView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.playerView);
+            make.bottom.equalTo(self.playerView);
+            make.size.mas_equalTo(CGSizeMake(self.playerView.frame.size.height, 50));
+        }];
     } completion:^(BOOL finished) {
        
         self.isFullScreen = YES;
@@ -323,18 +339,6 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
     if (!_playerView) {
         _playerView = [[UIView alloc]init];
         _playerView.backgroundColor = [UIColor redColor];
-        
-        if (@available(iOS 11.0, *)) {
-            _playerView.frame = CGRectMake(0,
-                                           self.view.safeAreaInsets.top,
-                                           CGRectGetWidth(self.view.bounds),
-                                           CGRectGetWidth(self.view.bounds) * 9 / 16.f);
-        } else {
-            _playerView.frame = CGRectMake(0,
-                                           0,
-                                           CGRectGetWidth(self.view.bounds),
-                                           CGRectGetWidth(self.view.bounds) * 9 / 16.f);
-        }
     }
     return _playerView;
 }
