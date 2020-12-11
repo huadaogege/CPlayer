@@ -51,9 +51,9 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
     [self.view addSubview:self.playerView];
     
     self.controlView.frame = CGRectMake(0,
-                                        self.playerView.frame.size.height - 30,
+                                        self.playerView.frame.size.height - 50,
                                         self.playerView.frame.size.width,
-                                        30);
+                                        50);
     [self.playerView addSubview:self.controlView];
     
     if (@available(iOS 13.0, *)) {
@@ -91,9 +91,9 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
 }
 
 - (UIView *)controlView {
-    if (_controlView) {
+    if (!_controlView) {
         _controlView = [[UIView alloc] init];
-        _controlView.backgroundColor = [UIColor blueColor];
+        _controlView.backgroundColor = [UIColor yellowColor];
     }
     return _controlView;
 }
@@ -181,6 +181,10 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
                                               self.playerView.frame.size.height - 40,
                                               50,
                                               40);
+        self.controlView.frame = CGRectMake(0,
+                                            self.playerView.frame.size.height - 50,
+                                            self.playerView.frame.size.width,
+                                            50);
     } completion:^(BOOL finished) {
         
         [self.playerView removeFromSuperview];
@@ -234,6 +238,10 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
                                               self.playerView.frame.size.width - 40,
                                               50,
                                               40);
+        self.controlView.frame = CGRectMake(0,
+                                            self.playerView.frame.size.width - 50,
+                                            self.playerView.frame.size.height,
+                                            50);
     } completion:^(BOOL finished) {
        
         self.isFullScreen = YES;
