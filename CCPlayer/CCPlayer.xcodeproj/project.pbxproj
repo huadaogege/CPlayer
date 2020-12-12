@@ -11,6 +11,7 @@
 		E9017FD22568F4DC00B3FCB2 /* PlayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9017FD12568F4DC00B3FCB2 /* PlayListViewController.swift */; };
 		E9017FDC2569065700B3FCB2 /* PlayListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9017FDB2569065700B3FCB2 /* PlayListCell.swift */; };
 		E9017FE22569587000B3FCB2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9017FE12569587000B3FCB2 /* PlayerViewController.swift */; };
+		E91BBFF12584A67F00FC3099 /* AVPlayer+SeekSmoothly.m in Sources */ = {isa = PBXBuildFile; fileRef = E91BBFF02584A67F00FC3099 /* AVPlayer+SeekSmoothly.m */; };
 		E9496F47256EA97100CF27C0 /* CFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9496F46256EA97100CF27C0 /* CFileManager.swift */; };
 		E96F2EC725729F43005416C3 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96F2EC625729F43005416C3 /* CommonUtil.swift */; };
 		E96F2EE42573CAE1005416C3 /* PhotoAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96F2EE32573CAE1005416C3 /* PhotoAlbumViewController.swift */; };
@@ -71,6 +72,8 @@
 		E9017FD12568F4DC00B3FCB2 /* PlayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListViewController.swift; sourceTree = "<group>"; };
 		E9017FDB2569065700B3FCB2 /* PlayListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListCell.swift; sourceTree = "<group>"; };
 		E9017FE12569587000B3FCB2 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		E91BBFEF2584A67F00FC3099 /* AVPlayer+SeekSmoothly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVPlayer+SeekSmoothly.h"; sourceTree = "<group>"; };
+		E91BBFF02584A67F00FC3099 /* AVPlayer+SeekSmoothly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVPlayer+SeekSmoothly.m"; sourceTree = "<group>"; };
 		E9496F46256EA97100CF27C0 /* CFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFileManager.swift; sourceTree = "<group>"; };
 		E96F2EC625729F43005416C3 /* CommonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
 		E96F2EE32573CAE1005416C3 /* PhotoAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumViewController.swift; sourceTree = "<group>"; };
@@ -354,6 +357,8 @@
 				E9EB474C25765A72007E0D56 /* OCClass.m */,
 				E99521C125811AA40005D18C /* OPlayerViewController.h */,
 				E99521C225811AA40005D18C /* OPlayerViewController.m */,
+				E91BBFEF2584A67F00FC3099 /* AVPlayer+SeekSmoothly.h */,
+				E91BBFF02584A67F00FC3099 /* AVPlayer+SeekSmoothly.m */,
 				E9E887C225768B0100C38BD4 /* PhotoManager.h */,
 				E9E887C325768B0100C38BD4 /* PhotoManager.m */,
 				E9E887FF2577D5F200C38BD4 /* PlayModel.h */,
@@ -525,6 +530,7 @@
 				E9AA008A258385AA00A89AA9 /* MASConstraint.m in Sources */,
 				E97928B42569EA97007BA26F /* PlayOnlineViewController.swift in Sources */,
 				E99AC1A72564120F00A3DC20 /* SceneDelegate.swift in Sources */,
+				E91BBFF12584A67F00FC3099 /* AVPlayer+SeekSmoothly.m in Sources */,
 				E9E888012577D5F200C38BD4 /* PlayModel.m in Sources */,
 				E9AA008B258385AA00A89AA9 /* MASConstraintMaker.m in Sources */,
 				E99521C325811AA40005D18C /* OPlayerViewController.m in Sources */,

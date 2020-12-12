@@ -223,6 +223,14 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
             return
         }
         
+//        let model = self.dataItems[indexPath.row]
+//        let play = JYEMainErlouViewController.init()
+//        let url:NSURL = NSURL(fileURLWithPath: (model as! PlayModel).path)
+//        play.playerURL = url.absoluteString
+//        self.present(play, animated: true) {}
+//
+//
+//        return
         let model = self.dataItems[indexPath.row]
         let playVC = OPlayerViewController.init(playModel: model as! PlayModel)
         playVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
