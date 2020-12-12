@@ -18,6 +18,7 @@ class FileListViewController: UIViewController {
         self.title = "文件列表"
         let playVC = PlayListViewController()
         playVC.setType(type: Type.FileList)
+        playVC.setSearchIsPrivate(isPrivate: false)
         self.addChild(playVC)
         self.view.addSubview(playVC.view)
     }

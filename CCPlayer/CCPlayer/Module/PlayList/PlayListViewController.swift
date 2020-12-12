@@ -23,6 +23,8 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
     
     var vcType = Type.Unknown
     
+    var searchPathIsPrivate = false
+    
     var selectDataItems : Array<Any> = Array.init()
     let cfManager = CFileManager.init()
     let playFileParser = PlayFileParser.init()
@@ -59,6 +61,16 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         self.hidesBottomBarWhenPushed = false
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if self.vcType == Type.PrivateList {
+            let superVC:UIViewController = self.view.superview?.next as! UIViewController
+            let rightButtonName = (self.vcType == Type.FileEditList) ? "完成":"编辑"
+            let rightButton = UIBarButtonItem(title: rightButtonName, style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButtonClick))
+            superVC.navigationItem.rightBarButtonItem = rightButton
+        }
+    }
+    
     override var shouldAutorotate:Bool {
         return true
     }
@@ -75,10 +87,15 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     lazy var tableView = {() -> UITableView in
-        var tableView = UITableView(frame: CGRect(x: 0, y: 0, width: screenObject.width, height: screenObject.height), style: UITableView.Style.grouped)
+        var tableView = UITableView(frame: CGRect(x: 0,
+                                                  y: 0,
+                                                  width: screenObject.width,
+                                                  height: screenObject.height),
+                                    style: UITableView.Style.grouped)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = UIColor.yellow
+        tableView.backgroundColor = UIColor.lightGray
+        
         return tableView
     }()
     
@@ -144,9 +161,25 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         self.vcType = type
     }
     
+    func setSearchIsPrivate(isPrivate:Bool) {
+        self.searchPathIsPrivate = isPrivate
+    }
+    
     @objc func rightButtonClick() {
         if (self.vcType == Type.FileEditList) {
             self.navigationController?.dismiss(animated: true, completion: {})
+        } else if (self.vcType == Type.PrivateList) {
+            if self.dataItems.count == 0 {
+                MBProgressHUD.showError("播放列表为空")
+                return
+            }
+            let playListVC = PlayListViewController()
+            playListVC.setType(type: Type.FileEditList)
+            playListVC.setSearchIsPrivate(isPrivate: true)
+            let playListNav = UINavigationController.init(rootViewController: playListVC)
+            
+            playListNav.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            self.navigationController?.present(playListNav, animated: true, completion: {})
         } else {
             if self.dataItems.count == 0 {
                 MBProgressHUD.showError("播放列表为空")
@@ -154,6 +187,7 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
             }
             let playListVC = PlayListViewController()
             playListVC.setType(type: Type.FileEditList)
+            playListVC.setSearchIsPrivate(isPrivate: false)
             let playListNav = UINavigationController.init(rootViewController: playListVC)
             
             playListNav.modalPresentationStyle = UIModalPresentationStyle.fullScreen
@@ -175,8 +209,7 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
             }
         } else {
             DispatchQueue.global().async { [self] in
-                let isPrivate = (self.vcType == Type.PrivateList)
-                dataItems = cfManager.preparePlayModels(isPrivate: isPrivate)
+                dataItems = cfManager.preparePlayModels(isPrivate: self.searchPathIsPrivate)
                 DispatchQueue.main.async {
                     MBProgressHUD.hide()
                     self.tableView.reloadData()

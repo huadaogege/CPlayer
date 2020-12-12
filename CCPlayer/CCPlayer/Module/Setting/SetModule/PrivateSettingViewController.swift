@@ -29,6 +29,11 @@ class PrivateSettingViewController: UIViewController, PasswordViewDelegate {
         self.view.addSubview(self.pwdView)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
     func passwordView() -> PasswordView {
         let pwdView = PasswordView.init(frame: CGRect(x: 0,
                                                       y: 0,
@@ -45,8 +50,9 @@ class PrivateSettingViewController: UIViewController, PasswordViewDelegate {
                 self.pwdView.removeFromSuperview()
                 let playListVC = PlayListViewController.init()
                 playListVC.setType(type: Type.PrivateList)
-                self.addChild(playListVC)
+                playListVC.setSearchIsPrivate(isPrivate: true)
                 self.view.addSubview(playListVC.view)
+                self.addChild(playListVC)
             } else {
                 self.pwdView.removeFromSuperview()
                 self.pwdView = passwordView()

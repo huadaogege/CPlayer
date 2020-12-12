@@ -96,5 +96,148 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7F624802-B6F4-4DE2-B292-4AC0C0DAF248"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CCPlayer/Module/Setting/SetModule/PrivateSettingViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "passwordInputFinish(password:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9D92813F-DF20-4F7D-B513-0CF98250B30E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CCPlayer/Module/PlayList/PlayListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "updateData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9D92813F-DF20-4F7D-B513-0CF98250B30E - 3fd1a48e707598e3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CCPlayer.PlayListViewController.updateData() -&gt; ()"
+                  moduleName = "CCPlayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cuiyuguan/github/CPlayer/CPlayer/CCPlayer/CCPlayer/Module/PlayList/PlayListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "211"
+                  endingLineNumber = "211"
+                  offsetFromSymbolStart = "972">
+               </Location>
+               <Location
+                  uuid = "9D92813F-DF20-4F7D-B513-0CF98250B30E - 3fd1a48e707598e3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CCPlayer.PlayListViewController.updateData() -&gt; ()"
+                  moduleName = "CCPlayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cuiyuguan/github/CPlayer/CPlayer/CCPlayer/CCPlayer/Module/PlayList/PlayListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "211"
+                  endingLineNumber = "211"
+                  offsetFromSymbolStart = "1052">
+               </Location>
+               <Location
+                  uuid = "9D92813F-DF20-4F7D-B513-0CF98250B30E - 44b9310e6b560cf7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in CCPlayer.PlayListViewController.updateData() -&gt; ()"
+                  moduleName = "CCPlayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cuiyuguan/github/CPlayer/CPlayer/CCPlayer/CCPlayer/Module/PlayList/PlayListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "212"
+                  endingLineNumber = "212"
+                  offsetFromSymbolStart = "204">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "511A6F8F-8F63-483C-959A-5613AC84771B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CCPlayer/Module/PlayList/PlayListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "updateData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "511A6F8F-8F63-483C-959A-5613AC84771B - 3fd1a48e7075991d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CCPlayer.PlayListViewController.updateData() -&gt; ()"
+                  moduleName = "CCPlayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cuiyuguan/github/CPlayer/CPlayer/CCPlayer/CCPlayer/Module/PlayList/PlayListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "201"
+                  endingLineNumber = "201"
+                  offsetFromSymbolStart = "596">
+               </Location>
+               <Location
+                  uuid = "511A6F8F-8F63-483C-959A-5613AC84771B - 59e265f585b14c48"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in CCPlayer.PlayListViewController.updateData() -&gt; ()"
+                  moduleName = "CCPlayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cuiyuguan/github/CPlayer/CPlayer/CCPlayer/CCPlayer/Module/PlayList/PlayListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5A263B5A-6D73-4AD8-88DF-CF5BFD8070BA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CCPlayer/Module/PlayList/PlayListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
+            landmarkName = "updateData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
