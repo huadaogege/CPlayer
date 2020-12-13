@@ -75,7 +75,6 @@
         }];
     }
     
-    
     NSLog(@"assets:%@", videoAssets);
 }
 

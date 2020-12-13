@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Photos
 
 class CommonUtil: NSObject {
     
@@ -19,6 +20,30 @@ class CommonUtil: NSObject {
         let decodedData = NSData(base64Encoded: encodedString, options: NSData.Base64DecodingOptions.init(rawValue: 0))
         let decodedString = NSString(data: decodedData! as Data, encoding: String.Encoding.utf8.rawValue)! as String
         return decodedString
+    }
+    
+    func needGotoSettingToOpenAccessAlbum() -> Bool {
+        if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.denied ||
+           PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.restricted {
+            return true
+        }
+        return false
+    }
+    
+    func photoAlbumIsAuthorized() -> Bool {
+        return PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized
+    }
+    
+    func requestPhotoAlbumAccess() {
+        if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.notDetermined {
+            PHPhotoLibrary.requestAuthorization { (status) in
+                if status == PHAuthorizationStatus.authorized {
+                    
+                } else if status == PHAuthorizationStatus.denied || status == PHAuthorizationStatus.restricted {
+                    
+                }
+            }
+        }
     }
 }
 
