@@ -8,3 +8,4 @@
 #import "PhotoManager.h"
 #import "PlayModel.h"
 #import "OPlayerViewController.h"
+#import "ShootViewController.h"

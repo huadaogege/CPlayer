@@ -45,12 +45,21 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         if self.vcType == Type.FileList {
             let superVC:UIViewController = self.view.superview?.next as! UIViewController
             
-            let rightButtonName = (self.vcType == Type.FileEditList) ? "完成":"编辑"
+            let rightButton1 = UIBarButtonItem(title: "录制", style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButton1Click))
+            rightButton1.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
+                                                 NSAttributedString.Key.foregroundColor:UIColor.white], for: UIControl.State.normal)
+            
+            let rightButtonName2 = (self.vcType == Type.FileEditList) ? "完成":"编辑"
             let color = (self.vcType == Type.FileEditList) ? UIColor.black : UIColor.white
-            let rightButton = UIBarButtonItem(title: rightButtonName, style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButtonClick))
-            rightButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
+            let rightButton2 = UIBarButtonItem(title: rightButtonName2, style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButtonClick))
+            rightButton2.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
                                                 NSAttributedString.Key.foregroundColor:color], for: UIControl.State.normal)
-            superVC.navigationItem.rightBarButtonItem = rightButton
+            
+            if self.vcType == Type.FileEditList {
+                superVC.navigationItem.rightBarButtonItem = rightButton2
+            } else {
+                superVC.navigationItem.rightBarButtonItems = [rightButton2, rightButton1]
+            }
         }
         if self.vcType == Type.FileEditList {
             let rightButtonName = (self.vcType == Type.FileEditList) ? "完成":"编辑"
@@ -94,6 +103,33 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
             self.view.addSubview(editBottomView)
         }
     }
+    
+    lazy var fileListTipsView = {() -> UIView in
+        var tipsView = UIView.init(frame: CGRect(x: (screenObject.width - 250)/2.0,
+                                                 y: (screenObject.height - 300)/4.0,
+                                                 width: 250,
+                                                 height: 300))
+        
+        let tipsImage = UIImageView.init(frame: CGRect(x: (250 - 80)/2.0,
+                                                       y: 0,
+                                                       width: 80,
+                                                       height: 80))
+        tipsImage.backgroundColor = UIColor.green
+        tipsView.addSubview(tipsImage)
+        
+        let tipsLabel = UILabel.init(frame: CGRect(x: 0,
+                                                   y: 100,
+                                                   width: 250,
+                                                   height: 150))
+        tipsLabel.font = UIFont.systemFont(ofSize: 15)
+        tipsLabel.textAlignment = NSTextAlignment.left
+        tipsLabel.numberOfLines = 0
+        tipsLabel.textColor = UIColor.gray
+        tipsLabel.text = "当前播放列表为空\n\n可以尝试：\n1.手机连接电脑，通过电脑同步\n2.通过该应用录制视频，视频只会保存到该应用中"
+        
+        tipsView.addSubview(tipsLabel)
+        return tipsView
+    }()
     
     lazy var tableView = {() -> UITableView in
         var tableView = UITableView(frame: CGRect(x: 0,
@@ -198,6 +234,13 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         self.searchPathIsPrivate = isPrivate
     }
     
+    @objc func rightButton1Click() {
+        let shootVC = ShootViewController.init()
+        shootVC.setParams()
+        shootVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        self.present(shootVC, animated: true) {}
+    }
+    
     @objc func rightButtonClick() {
         if (self.vcType == Type.FileEditList) {
             self.navigationController?.dismiss(animated: true, completion: {})
@@ -245,6 +288,11 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
                 dataItems = cfManager.preparePlayModels(isPrivate: self.searchPathIsPrivate)
                 DispatchQueue.main.async {
                     MBProgressHUD.hide()
+                    if dataItems.count == 0 && self.vcType == Type.FileList {
+                        self.tableView.addSubview(self.fileListTipsView)
+                    } else {
+                        self.fileListTipsView.removeFromSuperview()
+                    }
                     self.tableView.reloadData()
                 }
             }
