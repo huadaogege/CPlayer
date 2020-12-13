@@ -105,7 +105,10 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
                                                        width: screenObject.width,
                                                        height: 80))
         editBottomView.backgroundColor = UIColor.white
-        let editTitles = ["全选", "删除", "加密"]
+        var editTitles = ["全选", "删除", "加密"]
+        if self.searchPathIsPrivate {
+            editTitles = ["全选", "删除", "解密"]
+        }
         let space = 30
         let buttonWidth = (screenObject.width - CGFloat(space*4))/3.0
         for index in 0 ... 2 {
@@ -139,6 +142,7 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
             self.tableView.reloadData()
         } else if tag == 1 {
             if self.selectDataItems.count == 0 {
+                MBProgressHUD.showError("请至少选择一项数据")
                 return
             }
             for model in self.selectDataItems {
@@ -148,10 +152,16 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
             updateData()
         } else if tag == 2 {
             if self.selectDataItems.count == 0 {
+                MBProgressHUD.showError("请至少选择一项数据")
                 return
             }
             for model in self.selectDataItems {
-                cfManager.moveToPrivatePath(path: (model as! PlayModel).path)
+                if self.searchPathIsPrivate {
+                    cfManager.moveToPublicPath(path: (model as! PlayModel).path)
+                } else {
+                    cfManager.moveToPrivatePath(path: (model as! PlayModel).path)
+                }
+                self.selectDataItems.removeAll()
             }
             updateData()
         }
@@ -255,15 +265,6 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         if (self.vcType == Type.FileEditList) {
             return
         }
-        
-//        let model = self.dataItems[indexPath.row]
-//        let play = JYEMainErlouViewController.init()
-//        let url:NSURL = NSURL(fileURLWithPath: (model as! PlayModel).path)
-//        play.playerURL = url.absoluteString
-//        self.present(play, animated: true) {}
-//
-//
-//        return
         let model = self.dataItems[indexPath.row]
         let playVC = OPlayerViewController.init(playModel: model as! PlayModel)
         playVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
