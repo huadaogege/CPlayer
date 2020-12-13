@@ -46,12 +46,18 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
             let superVC:UIViewController = self.view.superview?.next as! UIViewController
             
             let rightButtonName = (self.vcType == Type.FileEditList) ? "完成":"编辑"
+            let color = (self.vcType == Type.FileEditList) ? UIColor.black : UIColor.white
             let rightButton = UIBarButtonItem(title: rightButtonName, style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButtonClick))
+            rightButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
+                                                NSAttributedString.Key.foregroundColor:color], for: UIControl.State.normal)
             superVC.navigationItem.rightBarButtonItem = rightButton
         }
         if self.vcType == Type.FileEditList {
             let rightButtonName = (self.vcType == Type.FileEditList) ? "完成":"编辑"
+            let color = (self.vcType == Type.FileEditList) ? UIColor.black : UIColor.white
             let rightButton = UIBarButtonItem(title: rightButtonName, style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButtonClick))
+            rightButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
+                                                NSAttributedString.Key.foregroundColor:color], for: UIControl.State.normal)
             self.navigationItem.rightBarButtonItem = rightButton
         }
     }
@@ -66,7 +72,10 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         if self.vcType == Type.PrivateList {
             let superVC:UIViewController = self.view.superview?.next as! UIViewController
             let rightButtonName = (self.vcType == Type.FileEditList) ? "完成":"编辑"
+            let color = (self.vcType == Type.FileEditList) ? UIColor.black : UIColor.white
             let rightButton = UIBarButtonItem(title: rightButtonName, style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButtonClick))
+            rightButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
+                                                NSAttributedString.Key.foregroundColor:color], for: UIControl.State.normal)
             superVC.navigationItem.rightBarButtonItem = rightButton
         }
     }
@@ -94,22 +103,22 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
                                     style: UITableView.Style.grouped)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = UIColor.lightGray
+        tableView.backgroundColor = UIColor.white
         
         return tableView
     }()
     
     lazy var editBottomView = {() -> UIView in
         var editBottomView = UIView.init(frame: CGRect(x: 0,
-                                                       y: screenObject.height - 80,
+                                                       y: screenObject.height - 100,
                                                        width: screenObject.width,
-                                                       height: 80))
+                                                       height: 100))
         editBottomView.backgroundColor = UIColor.white
         var editTitles = ["全选", "删除", "加密"]
         if self.searchPathIsPrivate {
             editTitles = ["全选", "删除", "解密"]
         }
-        let space = 30
+        let space = 35
         let buttonWidth = (screenObject.width - CGFloat(space*4))/3.0
         for index in 0 ... 2 {
             let button = UIButton.init(frame: CGRect(x: CGFloat(space) + (CGFloat(space) + buttonWidth)*CGFloat(index),
@@ -117,13 +126,20 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
                                                      width: buttonWidth,
                                                      height: 40))
             button.setTitle(editTitles[index], for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
             if index == 0 {
                 button.setTitle("反选", for: .selected)
             }
-            button.setTitleColor(UIColor.white, for: .normal)
-            button.backgroundColor = UIColor.gray
-            button.layer.cornerRadius = 8
-            button.layer.masksToBounds = true
+            if index == 0 {
+                button.setTitleColor(UIColor.black, for: .normal)
+                button.backgroundColor = UIColor.white
+            } else if index == 1 {
+                button.setTitleColor(UIColor.black, for: .normal)
+                button.backgroundColor = UIColor.init(red: 233/255.0, green: 234/255.0, blue: 235/255.0, alpha: 1.0)
+            } else if index == 2 {
+                button.setTitleColor(UIColor.white, for: .normal)
+                button.backgroundColor = UIColor(red: 30/255, green:0/255, blue:202/255, alpha:1)
+            }
             button.tag = index
             button.addTarget(self, action: #selector(editButtonClick), for: .touchUpInside)
             editBottomView.addSubview(button)
@@ -154,6 +170,13 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
             if self.selectDataItems.count == 0 {
                 MBProgressHUD.showError("请至少选择一项数据")
                 return
+            }
+            if !self.searchPathIsPrivate {
+                let config = ConfigCenter()
+                if !config.privateWorkspacePwdIsSet() {
+                    MBProgressHUD.showError("请先到设置中设置隐私空间密码")
+                    return
+                }
             }
             for model in self.selectDataItems {
                 if self.searchPathIsPrivate {
@@ -238,7 +261,7 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 100
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

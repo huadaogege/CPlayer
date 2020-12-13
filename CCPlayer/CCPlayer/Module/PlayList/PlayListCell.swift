@@ -19,12 +19,11 @@ class PlayListCell: UITableViewCell {
     var playModel = PlayModel.init()
     
     var screenObject = UIScreen.main.bounds
-    let selectButtonFrame = CGRect(x: -30, y: 45, width: 20, height: 20)
-    let snapImageViewFrame = CGRect(x: 10, y: 15, width: 140, height: 90)
-    let nameLabelFrame = CGRect(x: 155, y: 20, width: 180, height: 25)
-    let sizeLabelFrame = CGRect(x: 155, y: 60, width: 100, height: 15)
-    let timeLabelFrame = CGRect(x: 155, y: 85, width: 120, height: 15)
-    
+    let selectButtonFrame = CGRect(x: -35, y: 37.5, width: 25, height: 25)
+    let snapImageViewFrame = CGRect(x: 5, y: 9.5, width: 126, height: 81)
+    let nameLabelFrame = CGRect(x: 155, y: 10, width: 180, height: 25)
+    let sizeLabelFrame = CGRect(x: 155, y: 50, width: 100, height: 15)
+    let timeLabelFrame = CGRect(x: 155, y: 75, width: 120, height: 15)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -46,9 +45,9 @@ class PlayListCell: UITableViewCell {
     lazy var selectButton = {() -> UIButton in
         var selectButton = UIButton.init()
         selectButton.frame = selectButtonFrame
-        selectButton.backgroundColor = UIColor.gray
-        selectButton.setBackgroundImage(UIImage.init(named: "radiobtn_unchecked"), for: .normal)
-        selectButton.setBackgroundImage(UIImage.init(named: "radiobtn_checked"), for: .selected)
+        selectButton.backgroundColor = UIColor.clear
+        selectButton.setBackgroundImage(UIImage.init(named: "unselect"), for: .normal)
+        selectButton.setBackgroundImage(UIImage.init(named: "selected"), for: .selected)
         selectButton.layer.cornerRadius = 10
         selectButton.layer.masksToBounds = true
         selectButton.addTarget(self, action: #selector(selectButtonClick), for: .touchUpInside)
@@ -60,7 +59,7 @@ class PlayListCell: UITableViewCell {
         snapImageView.backgroundColor = UIColor.lightGray
         snapImageView.frame = snapImageViewFrame
         snapImageView.contentMode = .scaleAspectFill
-        snapImageView.layer.cornerRadius = 4
+        snapImageView.layer.cornerRadius = 3
         snapImageView.layer.masksToBounds = true
         return snapImageView
     }()

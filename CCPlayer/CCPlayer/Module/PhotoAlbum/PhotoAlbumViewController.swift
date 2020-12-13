@@ -21,6 +21,7 @@ class PhotoAlbumViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if commonUtil.needGotoSettingToOpenAccessAlbum() {
+            MBProgressHUD.showSuccess("请前往'设置' -> '隐私' -> '照片'开启该应用相册访问权限")
             return;
         }
         if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.notDetermined {
@@ -32,8 +33,11 @@ class PhotoAlbumViewController: UIViewController {
                         self.view.addSubview(playVC.view)
                         self.addChild(playVC)
                     }
-                } else if status == PHAuthorizationStatus.denied || status == PHAuthorizationStatus.restricted {
-                    
+                } else if status == PHAuthorizationStatus.denied ||
+                          status == PHAuthorizationStatus.restricted {
+                    DispatchQueue.main.async {
+                        MBProgressHUD.showSuccess("您拒绝了相机访问权限")
+                    }
                 }
             }
         }

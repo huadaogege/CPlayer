@@ -82,10 +82,10 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
 
 #pragma mark -- UI --
 - (void)setupUI {
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor blackColor];
     
     self.playerView.frame = CGRectMake(0,
-                                       kStatusSafeAreaTopHeight,
+                                       (kScreenHeight - CGRectGetWidth(self.view.bounds) * 9 / 16.f)/2.0 + 20,
                                        CGRectGetWidth(self.view.bounds),
                                        CGRectGetWidth(self.view.bounds) * 9 / 16.f);
     [self.view addSubview:self.playerView];

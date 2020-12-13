@@ -29,7 +29,7 @@ class PlayFileParser: NSObject {
     func iconWithAVAsset(avasset:AVAsset) -> UIImage {
         let gen = AVAssetImageGenerator.init(asset: avasset)
         gen.appliesPreferredTrackTransform = true
-        let time = CMTimeMakeWithSeconds(2.0, preferredTimescale: 1)
+        let time = CMTimeMakeWithSeconds(4.0, preferredTimescale: 1)
         var icon:UIImage = UIImage.init()
         var actualTime : CMTime = CMTimeMakeWithSeconds(0, preferredTimescale: 0)
             do {

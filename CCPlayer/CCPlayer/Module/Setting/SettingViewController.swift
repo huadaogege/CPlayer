@@ -7,13 +7,14 @@
 
 import Foundation
 import UIKit
+import Photos
 
 class SettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var screenObject = UIScreen.main.bounds
     
     var tableView : UITableView!
-    var dataItems = ["隐私空间", "开启扫描相册数据", "关于CCPlayer"]
+    var dataItems = ["隐私空间", "开启扫描相册数据", "存储空间", "关于CCPlayer"]
     
     
     override func viewDidLoad() {
@@ -58,7 +59,6 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell = SettingCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: identifier)
         }
         cell.setTitle(title: self.dataItems[indexPath.row])
-        cell?.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         return cell!
     }
     
@@ -66,6 +66,25 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         if indexPath.row == 0 {
             let privateWorkspaceVC = PrivateSettingViewController()
             self.navigationController?.pushViewController(privateWorkspaceVC, animated: true)
+        } else if indexPath.row == 1 {
+            let commonUtil = CommonUtil()
+            if commonUtil.photoAlbumIsAuthorized() {
+                MBProgressHUD.showSuccess("相册访问权限已开启")
+            } else if commonUtil.needGotoSettingToOpenAccessAlbum() {
+                MBProgressHUD.showSuccess("请前往'设置' -> '隐私' -> '照片'开启该应用相册访问权限")
+            } else {
+                PHPhotoLibrary.requestAuthorization { (status) in
+                    if status == PHAuthorizationStatus.authorized {
+                        DispatchQueue.main.async {
+                            MBProgressHUD.showSuccess("相册访问权限已开启")
+                        }
+                    } else if status == PHAuthorizationStatus.denied || status == PHAuthorizationStatus.restricted {
+                        DispatchQueue.main.async {
+                            MBProgressHUD.showSuccess("您拒绝了相机访问权限")
+                        }
+                    }
+                }
+            }
         }
     }
 }

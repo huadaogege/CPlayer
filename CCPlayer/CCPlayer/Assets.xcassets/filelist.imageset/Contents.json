@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "radiobtn_checked.png",
+      "filename" : "filelist.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "radiobtn_checked@2x.png",
+      "filename" : "filelist@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "radiobtn_checked@3x.png",
+      "filename" : "filelist@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
