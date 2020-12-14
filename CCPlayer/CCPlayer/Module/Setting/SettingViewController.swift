@@ -14,7 +14,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     var screenObject = UIScreen.main.bounds
     
     var tableView : UITableView!
-    var dataItems = ["隐私空间", "开启扫描相册数据", "存储空间", "是否开启TouchID/FaceID认证", "关于CCPlayer"]
+    var dataItems = ["隐私空间", "开启扫描相册数据", "存储空间", "开启Touch/FaceID", "关于CCPlayer"]
     
     
     override func viewDidLoad() {
@@ -65,7 +65,9 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             let privateWorkspaceVC = PrivateSettingViewController()
+            privateWorkspaceVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(privateWorkspaceVC, animated: true)
+            privateWorkspaceVC.hidesBottomBarWhenPushed = false
         } else if indexPath.row == 1 {
             let commonUtil = CommonUtil()
             if commonUtil.photoAlbumIsAuthorized() {

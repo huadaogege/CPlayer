@@ -202,6 +202,7 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
                 try!fileManager.removeItem(atPath: (model as! PlayModel).path)
             }
             updateData()
+            self.dismiss(animated: true) {}
         } else if tag == 2 {
             if self.selectDataItems.count == 0 {
                 MBProgressHUD.showError("请至少选择一项数据")
@@ -223,6 +224,7 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
                 self.selectDataItems.removeAll()
             }
             updateData()
+            self.dismiss(animated: true) {}
         }
     }
     

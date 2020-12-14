@@ -7,6 +7,7 @@
 
 import Foundation
 import Photos
+import LocalAuthentication
 
 class CommonUtil: NSObject {
     
@@ -42,6 +43,25 @@ class CommonUtil: NSObject {
                 } else if status == PHAuthorizationStatus.denied || status == PHAuthorizationStatus.restricted {
                     
                 }
+            }
+        }
+    }
+    
+    func deviceSupportBiometrics() -> Bool {
+        let context = LAContext()
+        var error:NSError?
+        let isIDAvailable = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
+        if isIDAvailable == false {
+            return false
+        }
+        return true
+    }
+    
+    func authTouchBtnClick() {
+        if deviceSupportBiometrics() == true {
+            let context = LAContext()
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "请求使用touch/Face ID") {[weak self] (bool, error) in
+            
             }
         }
     }
