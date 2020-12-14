@@ -14,7 +14,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     var screenObject = UIScreen.main.bounds
     
     var tableView : UITableView!
-    var dataItems = ["隐私空间", "开启扫描相册数据", "存储空间", "关于CCPlayer"]
+    var dataItems = ["隐私空间", "开启扫描相册数据", "存储空间", "是否开启TouchID/FaceID认证", "关于CCPlayer"]
     
     
     override func viewDidLoad() {

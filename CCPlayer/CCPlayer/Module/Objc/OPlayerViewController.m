@@ -52,6 +52,10 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backClick:)];
+    [leftButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]  forState:UIControlStateNormal];
+    self.navigationItem.leftBarButtonItem = leftButton;
+    
     if (@available(iOS 13.0, *)) {
         _lastInterfaceOrientation = [UIApplication sharedApplication].windows.firstObject.windowScene.interfaceOrientation;
     } else {
@@ -78,6 +82,10 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
         }
     }];
     [self.player play];
+}
+
+- (void)backClick:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -- UI --

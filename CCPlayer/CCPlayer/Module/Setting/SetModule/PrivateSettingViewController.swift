@@ -27,11 +27,23 @@ class PrivateSettingViewController: UIViewController, PasswordViewDelegate {
         self.pwdView = passwordView()
         self.pwdView.setPwdType(pwdType: pwdType)
         self.view.addSubview(self.pwdView)
+        
+        let leftItemButton = UIBarButtonItem(title: "返回", style: UIBarButtonItem.Style.plain, target: self, action: #selector(leftItemButtonClick))
+        leftItemButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
+                                               NSAttributedString.Key.foregroundColor:UIColor.white], for: UIControl.State.normal)
+        self.navigationItem.leftBarButtonItem = leftItemButton
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    @objc func leftItemButtonClick() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func passwordView() -> PasswordView {
