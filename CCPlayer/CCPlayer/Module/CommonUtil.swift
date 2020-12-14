@@ -57,11 +57,11 @@ class CommonUtil: NSObject {
         return true
     }
     
-    func authTouchBtnClick() {
+    func authTouchBtnClick(Authorized: @escaping (Bool) -> Void) {
         if deviceSupportBiometrics() == true {
             let context = LAContext()
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "请求使用touch/Face ID") {[weak self] (bool, error) in
-            
+                Authorized(bool)
             }
         }
     }

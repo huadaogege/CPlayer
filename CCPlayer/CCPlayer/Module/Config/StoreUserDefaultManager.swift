@@ -9,12 +9,12 @@ import Foundation
 
 // key
 let PrivateWorkspacePasswordKey = "__PrivateWorkspacePasswordKey__"
-
+let FaceOrTouchIDIsOpenKey = "__FaceOrTouchIDIsOpenKey__"
 
 class StoreUserDefaultManager: NSObject {
     let defaults = UserDefaults.standard
     
-    func setValueForKey(key:String, value:String) {
+    func setValueForKey(key:String, value:Any) {
         defaults.setValue(value, forKey: key)
     }
     
