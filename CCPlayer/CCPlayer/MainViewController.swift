@@ -26,7 +26,7 @@ class MainViewController: UITabBarController {
         photoAlbumNav.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Arial",size: 18)!,NSAttributedString.Key.foregroundColor:UIColor.white]
         photoAlbumNav.tabBarItem = UITabBarItem(title: "相册", image: UIImage(named: "album"), selectedImage: UIImage(named: ""))
         
-        let playOnlineVC = PlayOnlineViewController()
+        let playOnlineVC = WebBrowswerController()
         let playOnlineNav = UINavigationController(rootViewController: playOnlineVC)
         playOnlineNav.navigationBar.barTintColor = UIColor(red: 30/255, green:0/255, blue:202/255, alpha:1)
         playOnlineNav.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Arial",size: 18)!,NSAttributedString.Key.foregroundColor:UIColor.white]

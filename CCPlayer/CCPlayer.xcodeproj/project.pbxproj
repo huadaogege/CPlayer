@@ -12,6 +12,16 @@
 		E9017FDC2569065700B3FCB2 /* PlayListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9017FDB2569065700B3FCB2 /* PlayListCell.swift */; };
 		E9017FE22569587000B3FCB2 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9017FE12569587000B3FCB2 /* PlayerViewController.swift */; };
 		E91BBFF12584A67F00FC3099 /* AVPlayer+SeekSmoothly.m in Sources */ = {isa = PBXBuildFile; fileRef = E91BBFF02584A67F00FC3099 /* AVPlayer+SeekSmoothly.m */; };
+		E92B5FFC2588A98D00C9D5A3 /* WebBrowswerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E92B5FFB2588A98D00C9D5A3 /* WebBrowswerController.m */; };
+		E92B60022588AC2400C9D5A3 /* BrowserWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E92B60012588AC2400C9D5A3 /* BrowserWebView.m */; };
+		E92B60082588AC4300C9D5A3 /* BroswerSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E92B60062588AC4300C9D5A3 /* BroswerSearchBar.m */; };
+		E92B600E2588ACBB00C9D5A3 /* BrowserLoadFailedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E92B600D2588ACBB00C9D5A3 /* BrowserLoadFailedView.m */; };
+		E92B60182588BD2500C9D5A3 /* DownloadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E92B60172588BD2500C9D5A3 /* DownloadModel.m */; };
+		E92B60222588BDCD00C9D5A3 /* BroswerDownloadController.m in Sources */ = {isa = PBXBuildFile; fileRef = E92B601D2588BDCD00C9D5A3 /* BroswerDownloadController.m */; };
+		E92B60232588BDCD00C9D5A3 /* BroswerDownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E92B601E2588BDCD00C9D5A3 /* BroswerDownloadCell.m */; };
+		E92B60242588BDCD00C9D5A3 /* TJSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E92B60212588BDCD00C9D5A3 /* TJSwitchView.m */; };
+		E92B602A2588BEE100C9D5A3 /* TJDownloadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = E92B60292588BEE100C9D5A3 /* TJDownloadTask.m */; };
+		E92B60302588BF8800C9D5A3 /* WebBroswerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E92B602F2588BF8800C9D5A3 /* WebBroswerManager.m */; };
 		E9496F47256EA97100CF27C0 /* CFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9496F46256EA97100CF27C0 /* CFileManager.swift */; };
 		E96F2EC725729F43005416C3 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96F2EC625729F43005416C3 /* CommonUtil.swift */; };
 		E96F2EE42573CAE1005416C3 /* PhotoAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96F2EE32573CAE1005416C3 /* PhotoAlbumViewController.swift */; };
@@ -75,6 +85,26 @@
 		E9017FE12569587000B3FCB2 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		E91BBFEF2584A67F00FC3099 /* AVPlayer+SeekSmoothly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVPlayer+SeekSmoothly.h"; sourceTree = "<group>"; };
 		E91BBFF02584A67F00FC3099 /* AVPlayer+SeekSmoothly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVPlayer+SeekSmoothly.m"; sourceTree = "<group>"; };
+		E92B5FFA2588A98D00C9D5A3 /* WebBrowswerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebBrowswerController.h; sourceTree = "<group>"; };
+		E92B5FFB2588A98D00C9D5A3 /* WebBrowswerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebBrowswerController.m; sourceTree = "<group>"; };
+		E92B60002588AC2400C9D5A3 /* BrowserWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserWebView.h; sourceTree = "<group>"; };
+		E92B60012588AC2400C9D5A3 /* BrowserWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserWebView.m; sourceTree = "<group>"; };
+		E92B60062588AC4300C9D5A3 /* BroswerSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroswerSearchBar.m; sourceTree = "<group>"; };
+		E92B60072588AC4300C9D5A3 /* BroswerSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroswerSearchBar.h; sourceTree = "<group>"; };
+		E92B600C2588ACBB00C9D5A3 /* BrowserLoadFailedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserLoadFailedView.h; sourceTree = "<group>"; };
+		E92B600D2588ACBB00C9D5A3 /* BrowserLoadFailedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserLoadFailedView.m; sourceTree = "<group>"; };
+		E92B60162588BD2500C9D5A3 /* DownloadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadModel.h; sourceTree = "<group>"; };
+		E92B60172588BD2500C9D5A3 /* DownloadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadModel.m; sourceTree = "<group>"; };
+		E92B601C2588BDCD00C9D5A3 /* BroswerDownloadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroswerDownloadCell.h; sourceTree = "<group>"; };
+		E92B601D2588BDCD00C9D5A3 /* BroswerDownloadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroswerDownloadController.m; sourceTree = "<group>"; };
+		E92B601E2588BDCD00C9D5A3 /* BroswerDownloadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroswerDownloadCell.m; sourceTree = "<group>"; };
+		E92B601F2588BDCD00C9D5A3 /* BroswerDownloadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroswerDownloadController.h; sourceTree = "<group>"; };
+		E92B60202588BDCD00C9D5A3 /* TJSwitchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJSwitchView.h; sourceTree = "<group>"; };
+		E92B60212588BDCD00C9D5A3 /* TJSwitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJSwitchView.m; sourceTree = "<group>"; };
+		E92B60282588BEE100C9D5A3 /* TJDownloadTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TJDownloadTask.h; sourceTree = "<group>"; };
+		E92B60292588BEE100C9D5A3 /* TJDownloadTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TJDownloadTask.m; sourceTree = "<group>"; };
+		E92B602E2588BF8800C9D5A3 /* WebBroswerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebBroswerManager.h; sourceTree = "<group>"; };
+		E92B602F2588BF8800C9D5A3 /* WebBroswerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebBroswerManager.m; sourceTree = "<group>"; };
 		E9496F46256EA97100CF27C0 /* CFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFileManager.swift; sourceTree = "<group>"; };
 		E96F2EC625729F43005416C3 /* CommonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
 		E96F2EE32573CAE1005416C3 /* PhotoAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumViewController.swift; sourceTree = "<group>"; };
@@ -217,6 +247,41 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
+		E92B5FF92588A91600C9D5A3 /* WebBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				E92B5FFA2588A98D00C9D5A3 /* WebBrowswerController.h */,
+				E92B5FFB2588A98D00C9D5A3 /* WebBrowswerController.m */,
+				E92B60002588AC2400C9D5A3 /* BrowserWebView.h */,
+				E92B60012588AC2400C9D5A3 /* BrowserWebView.m */,
+				E92B60072588AC4300C9D5A3 /* BroswerSearchBar.h */,
+				E92B60062588AC4300C9D5A3 /* BroswerSearchBar.m */,
+				E92B600C2588ACBB00C9D5A3 /* BrowserLoadFailedView.h */,
+				E92B600D2588ACBB00C9D5A3 /* BrowserLoadFailedView.m */,
+				E92B602E2588BF8800C9D5A3 /* WebBroswerManager.h */,
+				E92B602F2588BF8800C9D5A3 /* WebBroswerManager.m */,
+				E92B60122588B1F900C9D5A3 /* Download */,
+			);
+			path = WebBrowser;
+			sourceTree = "<group>";
+		};
+		E92B60122588B1F900C9D5A3 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				E92B60282588BEE100C9D5A3 /* TJDownloadTask.h */,
+				E92B60292588BEE100C9D5A3 /* TJDownloadTask.m */,
+				E92B60162588BD2500C9D5A3 /* DownloadModel.h */,
+				E92B60172588BD2500C9D5A3 /* DownloadModel.m */,
+				E92B601C2588BDCD00C9D5A3 /* BroswerDownloadCell.h */,
+				E92B601E2588BDCD00C9D5A3 /* BroswerDownloadCell.m */,
+				E92B601F2588BDCD00C9D5A3 /* BroswerDownloadController.h */,
+				E92B601D2588BDCD00C9D5A3 /* BroswerDownloadController.m */,
+				E92B60202588BDCD00C9D5A3 /* TJSwitchView.h */,
+				E92B60212588BDCD00C9D5A3 /* TJSwitchView.m */,
+			);
+			path = Download;
+			sourceTree = "<group>";
+		};
 		E9496F45256EA95200CF27C0 /* FileManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +421,7 @@
 		E9EB474925765A4D007E0D56 /* Objc */ = {
 			isa = PBXGroup;
 			children = (
+				E92B5FF92588A91600C9D5A3 /* WebBrowser */,
 				E9AA006A2583858600A89AA9 /* Masonry */,
 				E9EB475125765ACF007E0D56 /* MBProgressHUD */,
 				E9EB474B25765A72007E0D56 /* OCClass.h */,
@@ -520,8 +586,12 @@
 			files = (
 				E9496F47256EA97100CF27C0 /* CFileManager.swift in Sources */,
 				E9AA0086258385AA00A89AA9 /* MASViewAttribute.m in Sources */,
+				E92B60302588BF8800C9D5A3 /* WebBroswerManager.m in Sources */,
 				E9017FD22568F4DC00B3FCB2 /* PlayListViewController.swift in Sources */,
+				E92B60222588BDCD00C9D5A3 /* BroswerDownloadController.m in Sources */,
+				E92B60022588AC2400C9D5A3 /* BrowserWebView.m in Sources */,
 				E9AA0087258385AA00A89AA9 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				E92B60242588BDCD00C9D5A3 /* TJSwitchView.m in Sources */,
 				E9AA0084258385AA00A89AA9 /* NSArray+MASAdditions.m in Sources */,
 				E9FBAF64257A195600FC75BB /* FileListViewController.swift in Sources */,
 				E97928BD256A3261007BA26F /* PrivateSettingViewController.swift in Sources */,
@@ -532,9 +602,11 @@
 				E99AC1A92564120F00A3DC20 /* ViewController.swift in Sources */,
 				E9AA0085258385AA00A89AA9 /* MASViewConstraint.m in Sources */,
 				E9AA008D258385AA00A89AA9 /* View+MASAdditions.m in Sources */,
+				E92B60232588BDCD00C9D5A3 /* BroswerDownloadCell.m in Sources */,
 				E9E887C425768B0100C38BD4 /* PhotoManager.m in Sources */,
 				E99AC1A52564120F00A3DC20 /* AppDelegate.swift in Sources */,
 				E97928CB256A336F007BA26F /* StoreUserDefaultManager.swift in Sources */,
+				E92B5FFC2588A98D00C9D5A3 /* WebBrowswerController.m in Sources */,
 				E9AA008A258385AA00A89AA9 /* MASConstraint.m in Sources */,
 				E97928B42569EA97007BA26F /* PlayOnlineViewController.swift in Sources */,
 				E9F5EF5725866D95003BA8E1 /* ShootViewController.m in Sources */,
@@ -551,8 +623,12 @@
 				E97928D0256A3E99007BA26F /* PasswordView.swift in Sources */,
 				E9017FE22569587000B3FCB2 /* PlayerViewController.swift in Sources */,
 				E96F2EC725729F43005416C3 /* CommonUtil.swift in Sources */,
+				E92B602A2588BEE100C9D5A3 /* TJDownloadTask.m in Sources */,
+				E92B60182588BD2500C9D5A3 /* DownloadModel.m in Sources */,
 				E99AC1E92566BE0000A3DC20 /* SettingCell.swift in Sources */,
+				E92B60082588AC4300C9D5A3 /* BroswerSearchBar.m in Sources */,
 				E99AC1E12565636500A3DC20 /* SettingViewController.swift in Sources */,
+				E92B600E2588ACBB00C9D5A3 /* BrowserLoadFailedView.m in Sources */,
 				E9AA008C258385AA00A89AA9 /* ViewController+MASAdditions.m in Sources */,
 				E9017FDC2569065700B3FCB2 /* PlayListCell.swift in Sources */,
 			);
