@@ -10,6 +10,29 @@
 
 #import "Masonry.h"
 
+#define SingletonDeclare(name) +(instancetype _Nonnull)shareInstance;
+#define SingletonImpl(name) +(instancetype)shareInstance{ \
+    static id instance = nil; \
+    static dispatch_once_t onceToken;\
+    dispatch_once(&onceToken, ^{\
+        instance = [[self alloc] init];\
+    });\
+    return instance;\
+}\
+\
++ (instancetype)allocWithZone:(struct _NSZone *)zone {\
+    static id instance = nil;\
+    static dispatch_once_t onceToken;\
+    dispatch_once(&onceToken, ^{\
+        instance = [super allocWithZone:zone];\
+    });\
+    return instance;\
+}\
+\
+- (id)copyWithZone:(nullable NSZone *)zone{\
+    return self;\
+}
+
 #define WeakSelf __weak typeof(self) weakSelf = self
 
 
@@ -27,11 +50,16 @@
 #define kStatusSafeAreaBottomHeight (faceIPhoneAndPad ? 34 : 0)//安全区 底
 #define kStatusBarHeight (isIPhoneXAll ? 22 : 0) //安全区 状态栏
 #define kStatusTabbarHeight (faceIPhoneAndPad ? 34+ 49 : 49)//安全区 tabbar高
-#define kWebBroswerToorBarHeight 44//浏览器底部操作栏高度
 
 #define kStatussafeH (isIPhoneXAll ? 44 : 20) //安全区 状态栏
 
 #define AdjustsScrollViewInsetNever(controller,view) if(@available(iOS 11.0, *)) {view.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;} else if([controller isKindOfClass:[UIViewController class]]) {controller.automaticallyAdjustsScrollViewInsets = false;}
+
+#define UIColorRandomColor UIColorFrom(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+#define UIColorFrom(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a]
+
+#define RGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+#define RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
 #define DocumentPath NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject
 
