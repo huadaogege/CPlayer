@@ -106,7 +106,7 @@ static int refreshCount = 0;//标记当前界面刷新次数
     }];
     
     [self addSubview:self.webView];
-    CGFloat webViewHeight = kScreenHeight - kStatusSafeAreaTopHeight - kStatusSafeAreaBottomHeight;
+    CGFloat webViewHeight = kScreenHeight - kStatusSafeAreaTopHeight - kStatusTabbarHeight;
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self);
         make.left.right.equalTo(self);
@@ -575,7 +575,7 @@ _out:
     NSString *disposition = headerInfo[@"Content-Disposition"];
     NSString *sufString = [disposition  componentsSeparatedByString:@"."].lastObject.lowercaseString;
     NSString *extensionName = urlString.lastPathComponent.pathExtension.lowercaseString;
-    if (true || [Support_Download_ContentType objectForKey:contentType] ||
+    if ([Support_Download_ContentType objectForKey:contentType] ||
         [Support_Download_File_Type containsObject:extensionName] ||
         [Support_Download_File_Type containsObject:sufString]) {
         NSLog(@"下载地址:%@", urlString);
