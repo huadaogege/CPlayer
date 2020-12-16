@@ -7,8 +7,7 @@
 //
 
 #import "BroswerDownloadCell.h"
-//#import "WebBroswerManager.h"
-//#import "TJFileManager.h"
+#import "WebBroswerManager.h"
 
 @interface BroswerDownloadCell ()
 

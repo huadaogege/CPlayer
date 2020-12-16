@@ -10,6 +10,9 @@
 #import <AssertMacros.h>
 #import "BrowserLoadFailedView.h"
 #import "MBProgressHUD+TJ.h"
+#import "DownloadModel.h"
+#import "CustomAlertVC.h"
+#import "WebBroswerManager.h"
 
 #define Support_Download_ContentType [NSDictionary dictionaryWithObjectsAndKeys:@".cer", @"application/x-cel",\
 @".jpeg", @"image/jpeg",\
@@ -333,6 +336,7 @@ static int refreshCount = 0;//标记当前界面刷新次数
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation {
+    
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
@@ -590,26 +594,25 @@ _out:
         if(!extensionName || extensionName.length>6){
              fileName = [fileName stringByAppendingString:[Support_Download_ContentType objectForKey:contentType]];
         }
-//        DownloadModel *model = [[DownloadModel alloc] init];
-//        model.downloadUrlString = urlString;
-//        model.fileName = fileName;
-//        model.status = Downloading;
-//        model.createTimeStamp = createTimeStamp;
-//        BOOL wifi = [[TJNetworkStateManager shareInstance] hasWIFI];
-//        NSString *netTips = wifi ? @"" : @"当前是移动网络，";
-//        NSString *message = [NSString stringWithFormat:@"%@确定下载文件'%@'", netTips, fileName];
-//        UIAlertController *alertController = [CustomAlertVC alertWithTitle:@"提示" message:message letfTitle:@"取消" rightTitle:@"确定" clickCallBack:^(NSInteger index) {
-//            if (index == 1) {
-//                if (self.downloadTasks.count >= 4) {
-//                    [MBProgressHUD showError:@"已达到最大下载数量,请稍后添加"];
-//                } else {
-//                    [self addDownloadTask:model];
-//                    [MBProgressHUD showSuccess:[NSString stringWithFormat:@"文件:%@已加入下载队列", model.fileName]];
-//                }
-//            }
-//        }];
-//        [self presentViewController:alertController animated:YES completion:^{
-//        }];
+        DownloadModel *model = [[DownloadModel alloc] init];
+        model.downloadUrlString = urlString;
+        model.fileName = fileName;
+        model.status = Downloading;
+        model.createTimeStamp = createTimeStamp;
+        NSString *message = [NSString stringWithFormat:@"确定下载文件'%@'", fileName];
+        
+        UIAlertController *alertController = [CustomAlertVC alertWithTitle:@"提示" message:message letfTitle:@"取消" rightTitle:@"确定" clickCallBack:^(NSInteger index) {
+            if (index == 1) {
+                if ([WebBroswerManager shareInstance].downloadTasks.count >= 4) {
+                    [MBProgressHUD showError:@"已达到最大下载数量,请稍后添加"];
+                } else {
+                    [[WebBroswerManager shareInstance] addDownloadTask:model];
+                    [MBProgressHUD showSuccess:[NSString stringWithFormat:@"文件:%@已加入下载队列", model.fileName]];
+                }
+            }
+        }];
+        UIViewController *vc = (UIViewController *)self.superview.nextResponder;
+        [vc presentViewController:alertController animated:YES completion:^{}];
         return YES;
     }
     /* 该类型为二进制流类型, 即使不支持下载, 也不允许跳转 */

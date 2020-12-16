@@ -7,10 +7,7 @@
 //
 
 #import "WebBroswerManager.h"
-#import "TJDBTableStruct.h"
-#import "TJFMDBUserManager.h"
-#import "CustomAlertVC.h"
-#import "TJNetworkStateManager.h"
+//#import "TJNetworkStateManager.h"
 
 #define Support_Download_ContentType [NSDictionary dictionaryWithObjectsAndKeys:@".cer", @"application/x-cel",\
 @".jpeg", @"image/jpeg",\
@@ -83,61 +80,6 @@ static WebBroswerManager *instance;
         [_dateFormatter setDateFormat:@"YYYY-MM-dd"];
     }
     return _dateFormatter;
-}
-
-#pragma mark -- 下载管理 --
-
-- (BOOL)isDownloadUrlWithHeaderInfo:(NSDictionary *)headerInfo urlString:(NSString *)urlString {
-    NSString *contentType = headerInfo[@"Content-Type"];
-    NSString *disposition = headerInfo[@"Content-Disposition"];
-    NSString *sufString = [disposition  componentsSeparatedByString:@"."].lastObject.lowercaseString;
-    NSString *extensionName = urlString.lastPathComponent.pathExtension.lowercaseString;
-    if ([Support_Download_ContentType objectForKey:contentType] ||
-        [Support_Download_File_Type containsObject:extensionName] ||
-        [Support_Download_File_Type containsObject:sufString]) {
-        NSLog(@"下载地址:%@", urlString);
-        NSString *createTimeStamp = [NSString stringWithFormat:@"%.lf", [[NSDate date] timeIntervalSince1970]*1000];
-        NSString *fileName = [self getDownloadFileName:headerInfo];
-        if (fileName.length == 0) {
-            fileName = createTimeStamp;
-            if (![Support_Download_ContentType objectForKey:contentType]) {
-                fileName = [fileName stringByAppendingString:[NSString stringWithFormat:@".%@", extensionName]];
-            } else {
-                fileName = [fileName stringByAppendingString:[Support_Download_ContentType objectForKey:contentType]];
-            }
-        }
-        fileName = [NSString stringWithFormat:@"%@_%@",createTimeStamp,fileName];
-        fileName = [fileName stringByAppendingString:[NSString stringWithFormat:@".%@", extensionName]];
-        if(!extensionName || extensionName.length>6){
-             fileName = [fileName stringByAppendingString:[Support_Download_ContentType objectForKey:contentType]];
-        }
-        DownloadModel *model = [[DownloadModel alloc] init];
-        model.downloadUrlString = urlString;
-        model.fileName = fileName;
-        model.status = Downloading;
-        model.createTimeStamp = createTimeStamp;
-        BOOL wifi = [[TJNetworkStateManager shareInstance] hasWIFI];
-        NSString *netTips = wifi ? @"" : @"当前是移动网络，";
-        NSString *message = [NSString stringWithFormat:@"%@确定下载文件'%@'", netTips, fileName];
-        UIAlertController *alertController = [CustomAlertVC alertWithTitle:@"提示" message:message letfTitle:@"取消" rightTitle:@"确定" clickCallBack:^(NSInteger index) {
-            if (index == 1) {
-                if (self.downloadTasks.count >= 4) {
-                    [MBProgressHUD showError:@"已达到最大下载数量,请稍后添加"];
-                } else {
-                    [self addDownloadTask:model];
-                    [MBProgressHUD showSuccess:[NSString stringWithFormat:@"文件:%@已加入下载队列", model.fileName]];
-                }
-            }
-        }];
-        [[UIViewController topViewController] presentViewController:alertController animated:YES completion:^{
-        }];
-        return YES;
-    }
-    /* 该类型为二进制流类型, 即使不支持下载, 也不允许跳转 */
-    if ([contentType isEqualToString:@"application/octet-stream"]) {
-        return YES;
-    }
-    return NO;
 }
 
 /**

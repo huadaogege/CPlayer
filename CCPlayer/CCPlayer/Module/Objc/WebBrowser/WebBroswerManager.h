@@ -25,11 +25,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray <TJDownloadTask *> *downloadTasks;
 
 /**
- 将已下载完成的任务加入已下载队列
+ 加入到下载任务中并开始下载
 
- @param model 下载完成的任务
+ @param model 新增下载任务
  */
-- (void)addDownloadedModels:(DownloadModel *)model;
+- (void)addDownloadTask:(DownloadModel *)model;
+
 
 
 

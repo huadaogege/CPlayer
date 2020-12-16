@@ -10,14 +10,7 @@
 #import "TJSwitchView.h"
 #import "BroswerDownloadCell.h"
 #import "WebBroswerManager.h"
-#import "TJFileManager.h"
-#import "SECREReaderViewController.h"
-#import "TJUserInfoModel.h"
-#import "TJUserInfo.h"
-#import "TJWebBroswerController.h"
-#import "UIViewController+TJPreview.h"
-#import "TJFileManager.h"
-#import "WebViewController.h"
+#import "MBProgressHUD+TJ.h"
 
 #define CellIdentifier @"__BroswerDownloadControllerCellIdentifier__"
 
@@ -36,7 +29,6 @@
     [super viewDidLoad];
     [self initializeView];
     self.title = @"下载管理";
-    [[WebBroswerManager shareInstance] loadDownloadedFromDatabase];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -45,7 +37,7 @@
 
 - (void)initializeView {
     self.status = Downloading;
-    self.view.backgroundColor = TJ_WHITE_COLOR;
+    self.view.backgroundColor = [UIColor whiteColor];
     self.switchView = [[TJSwitchView alloc] initWithTitles:@[@"下载中", @"已下载"]];
     self.switchView.swDelegate = self;
     CGFloat switchView_Height = 55;
@@ -65,7 +57,7 @@
         _tableView = [[UITableView alloc] init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.backgroundColor = TJ_WHITE_COLOR;
+        _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     }
     return _tableView;
@@ -110,18 +102,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.status == DownloadFinished) {
-        NSMutableArray *models = [NSMutableArray arrayWithArray:[WebBroswerManager shareInstance].downloadedModels];
-        if (indexPath.row < models.count) {
-            DownloadModel *model = models[indexPath.row];
-            NSString *filePath = [NSString stringWithFormat:@"%@/%@/%@", [TJFileManager getBaseDir], WebDir,model.filePath];
-            if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-                [MBProgressHUD showError:@"文件已不存在"];
-            } else {
-                [MBProgressHUD showSuccess:@"请前往:文件管理器/工作区/浏览器下载 文件夹下打开"];
-            }
-        }
-    }
+    
 }
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -139,7 +120,7 @@
     if (indexPath.row < models.count) {
         DownloadModel *model = models[indexPath.row];
         [[WebBroswerManager shareInstance].downloadedModels removeObject:model];
-        [[WebBroswerManager shareInstance] deleteDownloadedModel:model];
+//        [[WebBroswerManager shareInstance] deleteDownloadedModel:model];
         [self.tableView reloadData];
     }
 }
@@ -159,30 +140,24 @@
             }
         }
         if (dtask) {
-            WeakSelf(self);
+            WeakSelf;
             [dtask downloadFinish:^(BOOL state, NSString * _Nonnull message, NSString * _Nonnull filePath) {
                 if (state) {
-                    NSString * path = [TJFileManager getBaseDir];
-                    path = [path stringByAppendingPathComponent:WebDir];
-                    [TJFileManager creatDirectoryWithPath:path];
+                    NSString * path = DocumentPath;
                     NSString *fileName = model.fileName;
                     NSString *desFilePath = [path stringByAppendingPathComponent:fileName];
                     /* 文件下载完成之后, 调用文件管理器的存储方法 */
                     NSData *fileData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:filePath]];
                     if (fileData) {
-                        BOOL ret = [TJFileManager fileManagerwriteToFile:desFilePath withData:fileData];
-                        NSLog(@"下载结果:%d", ret);
+                        [fileData writeToFile:desFilePath atomically:YES];
                     }
                     [[WebBroswerManager shareInstance].downloadingModels removeObject:model];
                     [[WebBroswerManager shareInstance].downloadTasks removeObject:dtask];
                     model.filePath = fileName;//存储文件名, 路径临时拼接
                     model.status = DownloadFinished;
-                    [[WebBroswerManager shareInstance] addDownloadedModels:model];
                 } else {
                     NSLog(@"download failed.");
-                    if ([[UIViewController topViewController] isKindOfClass:[TJWebBroswerController class]] ||  [[UIViewController topViewController] isKindOfClass:[WebViewController class]]) {
-                        [MBProgressHUD showError:@"文件下载失败"];
-                    }
+                    [MBProgressHUD showError:@"文件下载失败"];
                     [[WebBroswerManager shareInstance].downloadingModels removeObject:model];
                     [[WebBroswerManager shareInstance].downloadTasks removeObject:dtask];
                 }
@@ -191,7 +166,7 @@
                 if (error) {
                     NSLog(@"delete failed.");
                 }
-                [weakself.tableView reloadData];
+                [weakSelf.tableView reloadData];
             }];
         }
     }
@@ -204,12 +179,6 @@
     [self.tableView reloadData];
 }
 
-#pragma mark -- Private Methods --
-#pragma mark -- 阅读器预览接口 --
-
-- (void)previewFileWithFilePath:(NSString *)filePath {
-     [self previewFile:filePath];
-}
 
 
 

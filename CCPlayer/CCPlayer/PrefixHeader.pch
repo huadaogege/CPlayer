@@ -10,6 +10,29 @@
 
 #import "Masonry.h"
 
+#define SingletonDeclare(name) +(instancetype _Nonnull)shareInstance;
+#define SingletonImpl(name) +(instancetype)shareInstance{ \
+    static id instance = nil; \
+    static dispatch_once_t onceToken;\
+    dispatch_once(&onceToken, ^{\
+        instance = [[self alloc] init];\
+    });\
+    return instance;\
+}\
+\
++ (instancetype)allocWithZone:(struct _NSZone *)zone {\
+    static id instance = nil;\
+    static dispatch_once_t onceToken;\
+    dispatch_once(&onceToken, ^{\
+        instance = [super allocWithZone:zone];\
+    });\
+    return instance;\
+}\
+\
+- (id)copyWithZone:(nullable NSZone *)zone{\
+    return self;\
+}
+
 #define WeakSelf __weak typeof(self) weakSelf = self
 
 

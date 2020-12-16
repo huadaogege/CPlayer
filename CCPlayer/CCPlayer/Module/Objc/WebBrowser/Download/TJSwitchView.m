@@ -31,7 +31,7 @@
 }
 
 - (void)setupUI {
-    self.backgroundColor = TJ_WHITE_COLOR;
+    self.backgroundColor = [UIColor whiteColor];
     for (int i = 0; i < self.titles.count; i ++) {
         NSString *title = self.titles[i];
         UIButton *button = [[UIButton alloc] init];
@@ -39,10 +39,10 @@
         [button setTitle:title forState:UIControlStateNormal];
         button.tag = i;
         if (i == 0) {
-            [button setTitleColor:COMMON_TITLE_TEXT_COLOR forState:UIControlStateNormal];
+            [button setTitleColor:RGB(0x33, 0x33, 0x33) forState:UIControlStateNormal];
             self.installedButton = button;
         } else {
-            [button setTitleColor:TJ_GRAY_COLOR forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
             self.unInstalledButton = button;
         }
         [button addTarget:self
@@ -52,14 +52,14 @@
     }
     CGRect rect = [self indexBarRectWithOriginx:OriginX];
     self.indexBarView = [[UIView alloc] initWithFrame:rect];
-    self.indexBarView.backgroundColor = COMMON_TITLE_TEXT_COLOR;
+    self.indexBarView.backgroundColor = RGB(0x33, 0x33, 0x33);
     [self addSubview:self.indexBarView];
     [self addBottomView];
 }
 
 - (void)addBottomView {
     UIView *bottomV = [UIView new];
-    bottomV.backgroundColor = COMMON_LINE_LIGHTGRAY_COLOR;
+    bottomV.backgroundColor = RGB(222, 222, 222);
     
     [self addSubview:bottomV];
     [bottomV mas_makeConstraints:^(MASConstraintMaker *make) {
