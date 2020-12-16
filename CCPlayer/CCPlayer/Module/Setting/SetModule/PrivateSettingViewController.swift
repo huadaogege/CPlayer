@@ -28,9 +28,9 @@ class PrivateSettingViewController: UIViewController, PasswordViewDelegate {
         self.pwdView.setPwdType(pwdType: pwdType)
         self.view.addSubview(self.pwdView)
         
-        let leftItemButton = UIBarButtonItem(title: "返回", style: UIBarButtonItem.Style.plain, target: self, action: #selector(leftItemButtonClick))
-        leftItemButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
-                                               NSAttributedString.Key.foregroundColor:UIColor.white], for: UIControl.State.normal)
+        let leftItemButton = UIBarButtonItem(image: UIImage.init(named: "wb_goback"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(leftItemButtonClick))
+//        leftItemButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
+//                                               NSAttributedString.Key.foregroundColor:UIColor.white], for: UIControl.State.normal)
         self.navigationItem.leftBarButtonItem = leftItemButton
     }
     

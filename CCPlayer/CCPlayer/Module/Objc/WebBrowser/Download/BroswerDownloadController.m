@@ -160,11 +160,11 @@
                     [MBProgressHUD showError:@"文件下载失败"];
                     [[WebBroswerManager shareInstance].downloadingModels removeObject:model];
                     [[WebBroswerManager shareInstance].downloadTasks removeObject:dtask];
-                }
-                NSError *error;
-                [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
-                if (error) {
-                    NSLog(@"delete failed.");
+                    NSError *error;
+                    [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
+                    if (error) {
+                        NSLog(@"delete failed.");
+                    }
                 }
                 [weakSelf.tableView reloadData];
             }];

@@ -24,7 +24,7 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
 @property (nonatomic, strong) UITapGestureRecognizer *gesture;
 
 @property (nonatomic, strong) UIView *controlTopView;
-@property (nonatomic, nullable, strong) UIButton *btnBack;
+//@property (nonatomic, nullable, strong) UIButton *btnBack;
 @property (nonatomic, nullable, strong) UILabel *titleLabel;
 
 @property (nonatomic, strong) UIView *controlBottonView;
@@ -52,8 +52,8 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backClick:)];
-    [leftButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]  forState:UIControlStateNormal];
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"wb_goback"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick:)];
+//    [leftButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]  forState:UIControlStateNormal];
     self.navigationItem.leftBarButtonItem = leftButton;
     
     if (@available(iOS 13.0, *)) {
@@ -106,6 +106,7 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
     
     [self initcontrolBottonView];
     self.titleLabel.text = self.model.name;
+    self.title = self.model.name;
     
     self.gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gesTap:)];
     [self.view addGestureRecognizer:self.gesture];
@@ -124,7 +125,7 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
         make.height.equalTo(@30);
     }];
     
-    [self.controlTopView addSubview:self.btnBack];
+//    [self.controlTopView addSubview:self.btnBack];
     [self.controlTopView addSubview:self.titleLabel];
     
     // bottom
@@ -152,17 +153,17 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
     return _controlTopView;
 }
 
-- (UIButton *)btnBack {
-    if (!_btnBack) {
-        _btnBack = [[UIButton alloc] init];
-        _btnBack.backgroundColor = [UIColor clearColor];
-        [_btnBack setBackgroundImage:[UIImage imageNamed:@"play_back"] forState:UIControlStateNormal];
-        [_btnBack addTarget:self
-                     action:@selector(backClick)
-           forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _btnBack;
-}
+//- (UIButton *)btnBack {
+//    if (!_btnBack) {
+//        _btnBack = [[UIButton alloc] init];
+//        _btnBack.backgroundColor = [UIColor clearColor];
+//        [_btnBack setBackgroundImage:[UIImage imageNamed:@"play_back"] forState:UIControlStateNormal];
+//        [_btnBack addTarget:self
+//                     action:@selector(backClick)
+//           forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _btnBack;
+//}
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
@@ -272,16 +273,17 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
 
 - (void)updateControlSubViewFrame {
     // top
-    [self.btnBack mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.controlTopView).with.offset(5);
-        make.top.equalTo(self.controlTopView);
-        make.size.mas_equalTo(CGSizeMake(30, 30));
-    }];
-    
-    self.btnBack.hidden = self.isFullScreen;
+//    [self.btnBack mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.controlTopView).with.offset(5);
+//        make.top.equalTo(self.controlTopView);
+//        make.size.mas_equalTo(CGSizeMake(30, 30));
+//    }];
+//
+//    self.btnBack.hidden = self.isFullScreen;
+    self.titleLabel.hidden = !self.isFullScreen;
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.btnBack.mas_right).with.offset(5);
+        make.left.equalTo(self.view).with.offset(40);
         make.top.equalTo(self.controlTopView);
         make.right.equalTo(self.controlTopView.mas_right).with.offset(-80);
         make.height.equalTo(@30);

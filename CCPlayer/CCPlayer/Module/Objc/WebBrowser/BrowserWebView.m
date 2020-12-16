@@ -106,7 +106,7 @@ static int refreshCount = 0;//标记当前界面刷新次数
     }];
     
     [self addSubview:self.webView];
-    CGFloat webViewHeight = kScreenHeight - kStatusSafeAreaTopHeight - kStatusSafeAreaBottomHeight;
+    CGFloat webViewHeight = kScreenHeight - kStatusSafeAreaTopHeight - kStatusTabbarHeight;
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self);
         make.left.right.equalTo(self);
@@ -589,8 +589,6 @@ _out:
                 fileName = [fileName stringByAppendingString:[Support_Download_ContentType objectForKey:contentType]];
             }
         }
-        fileName = [NSString stringWithFormat:@"%@_%@",createTimeStamp,fileName];
-        fileName = [fileName stringByAppendingString:[NSString stringWithFormat:@".%@", extensionName]];
         if(!extensionName || extensionName.length>6){
              fileName = [fileName stringByAppendingString:[Support_Download_ContentType objectForKey:contentType]];
         }

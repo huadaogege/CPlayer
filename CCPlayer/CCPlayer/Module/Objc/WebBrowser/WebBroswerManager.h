@@ -32,7 +32,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addDownloadTask:(DownloadModel *)model;
 
 
+/**
+ 删除已下载完成的记录
 
+ @param model 下载完成的任务模型
+ */
+- (void)deleteDownloadedModel:(DownloadModel *)model;
 
 @end
 

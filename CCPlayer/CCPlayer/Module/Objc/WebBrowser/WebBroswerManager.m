@@ -119,6 +119,15 @@ static WebBroswerManager *instance;
     [task startDownload];
 }
 
+/**
+ 删除已下载完成的记录
+
+ @param model 下载完成的任务模型
+ */
+- (void)deleteDownloadedModel:(DownloadModel *)model {
+    
+}
+
 - (NSDictionary *)downloadedInfoFromModel:(DownloadModel *)model {
     return @{@"fileName":model.fileName == nil ? @"":model.fileName,
              @"downloadUrlString":model.downloadUrlString == nil ? @"":model.downloadUrlString,
