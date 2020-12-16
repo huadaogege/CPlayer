@@ -8,6 +8,7 @@
 
 #import "TJDownloadTask.h"
 #import "WebBroswerManager.h"
+#import "AFNetworking.h"
 
 @interface TJDownloadTask ()
 
@@ -55,6 +56,22 @@
 //            [[WebBroswerManager shareInstance].downloadTasks removeObject:self];
 //        }
 //    }];
+    NSURL *URL = [NSURL URLWithString:self.model.downloadUrlString];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    NSURLSessionDownloadTask *task = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+        if (self.downloadProgress) {
+            NSLog(@"下载进度:%f", downloadProgress.completedUnitCount * 1.0 / downloadProgress.totalUnitCount);
+            self.downloadProgress(downloadProgress.completedUnitCount * 1.0 / downloadProgress.totalUnitCount);
+        }
+    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        NSString *filePath = [DocumentPath stringByAppendingPathComponent:self.model.fileName];
+        return [NSURL fileURLWithPath:filePath];
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        
+    }];
+    [task resume];
 }
 
 - (void)downLoadProgress:(TaskDownloadProgressBlock)downloadProgress {
