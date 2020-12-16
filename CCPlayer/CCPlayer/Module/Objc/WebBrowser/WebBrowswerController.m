@@ -55,6 +55,7 @@
         }
     } else if (btn.tag == 3) {
         BroswerDownloadController *downLoadVC = [[BroswerDownloadController alloc] init];
+        downLoadVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:downLoadVC animated:YES];
     }
 }
