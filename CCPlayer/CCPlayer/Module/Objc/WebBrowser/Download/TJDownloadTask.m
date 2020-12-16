@@ -61,8 +61,9 @@
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     NSURLSessionDownloadTask *task = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+        NSLog(@"下载进度:%f", downloadProgress.completedUnitCount * 1.0 / downloadProgress.totalUnitCount);
         if (self.downloadProgress) {
-            NSLog(@"下载进度:%f", downloadProgress.completedUnitCount * 1.0 / downloadProgress.totalUnitCount);
+            
             self.downloadProgress(downloadProgress.completedUnitCount * 1.0 / downloadProgress.totalUnitCount);
         }
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {

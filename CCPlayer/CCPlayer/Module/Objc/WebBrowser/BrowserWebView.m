@@ -575,7 +575,7 @@ _out:
     NSString *disposition = headerInfo[@"Content-Disposition"];
     NSString *sufString = [disposition  componentsSeparatedByString:@"."].lastObject.lowercaseString;
     NSString *extensionName = urlString.lastPathComponent.pathExtension.lowercaseString;
-    if ([Support_Download_ContentType objectForKey:contentType] ||
+    if (true || [Support_Download_ContentType objectForKey:contentType] ||
         [Support_Download_File_Type containsObject:extensionName] ||
         [Support_Download_File_Type containsObject:sufString]) {
         NSLog(@"下载地址:%@", urlString);
