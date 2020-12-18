@@ -29,19 +29,18 @@
 }
 
 - (void)setNav {
-    UIBarButtonItem *leftBtn1 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"wb_goback"] style:UIBarButtonItemStylePlain target:self action:@selector(navBtnClick:)];
-//    [leftBtn1 setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]  forState:UIControlStateNormal];
+    UIBarButtonItem *leftBtn1 = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"wb_goback"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleDone target:self action:@selector(navBtnClick:)];
+
     leftBtn1.tag = 1;
-    UIBarButtonItem *leftBtn2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"wb_goForward"] style:UIBarButtonItemStylePlain target:self action:@selector(navBtnClick:)];
-//    [leftBtn2 setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]  forState:UIControlStateNormal];
+    UIBarButtonItem *leftBtn2 = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"wb_goForward"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleDone target:self action:@selector(navBtnClick:)];
     leftBtn2.tag = 2;
     
-    UIBarButtonItem *leftBtn3 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"wb_gohome"] style:UIBarButtonItemStylePlain target:self action:@selector(navBtnClick:)];
+    UIBarButtonItem *leftBtn3 = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"wb_gohome"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleDone target:self action:@selector(navBtnClick:)];
     leftBtn3.tag = 3;
     self.navigationItem.leftBarButtonItems = @[leftBtn1, leftBtn2, leftBtn3];
     
     UIBarButtonItem *rightBtn1 = [[UIBarButtonItem alloc] initWithTitle:@"下载" style:UIBarButtonItemStylePlain target:self action:@selector(navBtnClick:)];
-//    [rightBtn1 setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]  forState:UIControlStateNormal];
+    [rightBtn1 setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]  forState:UIControlStateNormal];
     rightBtn1.tag = 4;
     self.navigationItem.rightBarButtonItems = @[rightBtn1];
 }

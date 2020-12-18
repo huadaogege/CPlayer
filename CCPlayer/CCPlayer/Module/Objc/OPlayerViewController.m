@@ -52,8 +52,7 @@ static CGFloat AnimationDuration = 0.3;//旋转动画执行时间
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"wb_goback"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick:)];
-//    [leftButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]  forState:UIControlStateNormal];
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"wb_goback"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(backClick:)];
     self.navigationItem.leftBarButtonItem = leftButton;
     
     if (@available(iOS 13.0, *)) {

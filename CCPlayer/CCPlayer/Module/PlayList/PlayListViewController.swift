@@ -46,14 +46,14 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
             let superVC:UIViewController = self.view.superview?.next as! UIViewController
             
             let rightButton1 = UIBarButtonItem(title: "录制", style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButton1Click))
-//            rightButton1.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
-//                                                 NSAttributedString.Key.foregroundColor:UIColor.white], for: UIControl.State.normal)
+            rightButton1.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
+                                                 NSAttributedString.Key.foregroundColor:UIColor.white], for: UIControl.State.normal)
             
             let rightButtonName2 = (self.vcType == Type.FileEditList) ? "完成":"编辑"
-//            let color = (self.vcType == Type.FileEditList) ? UIColor.black : UIColor.white
+            let color = (self.vcType == Type.FileEditList) ? UIColor.black : UIColor.white
             let rightButton2 = UIBarButtonItem(title: rightButtonName2, style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButtonClick))
-//            rightButton2.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
-//                                                NSAttributedString.Key.foregroundColor:color], for: UIControl.State.normal)
+            rightButton2.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
+                                                NSAttributedString.Key.foregroundColor:color], for: UIControl.State.normal)
             
             if self.vcType == Type.FileEditList {
                 superVC.navigationItem.rightBarButtonItem = rightButton2
@@ -63,10 +63,10 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         }
         if self.vcType == Type.FileEditList {
             let rightButtonName = (self.vcType == Type.FileEditList) ? "完成":"编辑"
-//            let color = (self.vcType == Type.FileEditList) ? UIColor.black : UIColor.white
+            let color = (self.vcType == Type.FileEditList) ? UIColor.black : UIColor.white
             let rightButton = UIBarButtonItem(title: rightButtonName, style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButtonClick))
-//            rightButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
-//                                                NSAttributedString.Key.foregroundColor:color], for: UIControl.State.normal)
+            rightButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
+                                                NSAttributedString.Key.foregroundColor:color], for: UIControl.State.normal)
             self.navigationItem.rightBarButtonItem = rightButton
         }
     }
@@ -81,10 +81,10 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         if self.vcType == Type.PrivateList {
             let superVC:UIViewController = self.view.superview?.next as! UIViewController
             let rightButtonName = (self.vcType == Type.FileEditList) ? "完成":"编辑"
-//            let color = (self.vcType == Type.FileEditList) ? UIColor.black : UIColor.white
+            let color = (self.vcType == Type.FileEditList) ? UIColor.black : UIColor.white
             let rightButton = UIBarButtonItem(title: rightButtonName, style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButtonClick))
-//            rightButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
-//                                                NSAttributedString.Key.foregroundColor:color], for: UIControl.State.normal)
+            rightButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
+                                                NSAttributedString.Key.foregroundColor:color], for: UIControl.State.normal)
             superVC.navigationItem.rightBarButtonItem = rightButton
         }
     }
