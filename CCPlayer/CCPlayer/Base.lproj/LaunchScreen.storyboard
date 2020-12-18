@@ -16,20 +16,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="gIT-Re-9au">
-                                <rect key="frame" x="177" y="156" width="60" height="60"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="gIT-Re-9au">
+                                <rect key="frame" x="147" y="164" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="UVP-EC-HEQ"/>
+                                    <constraint firstAttribute="height" constant="120" id="fgb-fZ-jKh"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="欢迎使用CCPlayer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCv-yC-9sg">
-                                <rect key="frame" x="71" y="807" width="272" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎使用CCPlayer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCv-yC-9sg">
+                                <rect key="frame" x="107" y="770" width="200" height="37"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="K8t-sK-MEc"/>
+                                    <constraint firstAttribute="width" constant="200" id="wCF-D4-Mrj"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <color key="highlightedColor" red="0.0" green="0.60283759719999996" blue="0.073384910489999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CCPlayer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HlO-mZ-5xs">
-                                <rect key="frame" x="111" y="262" width="192" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CCPlayer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HlO-mZ-5xs">
+                                <rect key="frame" x="132" y="304" width="150" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Ef8-fF-nCk"/>
+                                    <constraint firstAttribute="height" constant="41" id="uwH-G1-aZe"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <color key="textColor" red="0.0" green="0.60283759719999996" blue="0.073384910489999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="highlightedColor" red="0.0" green="0.60283759715025909" blue="0.073384910493488414" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -38,9 +48,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="gCv-yC-9sg" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ODz-bq-hHg"/>
                             <constraint firstItem="gIT-Re-9au" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="RnU-u9-QO5"/>
-                            <constraint firstItem="gIT-Re-9au" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="UFS-js-zqu"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gCv-yC-9sg" secondAttribute="bottom" constant="55" id="SWv-I6-aSg"/>
+                            <constraint firstItem="gIT-Re-9au" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ia4-oF-6km"/>
+                            <constraint firstItem="gIT-Re-9au" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="jDn-X2-pIB"/>
                             <constraint firstItem="gIT-Re-9au" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="jrN-XZ-x9p"/>
+                            <constraint firstItem="HlO-mZ-5xs" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="upz-XG-wiA"/>
+                            <constraint firstItem="HlO-mZ-5xs" firstAttribute="top" secondItem="gIT-Re-9au" secondAttribute="bottom" constant="20" id="uuL-0F-DTH"/>
                         </constraints>
                     </view>
                 </viewController>

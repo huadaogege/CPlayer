@@ -1,0 +1,6 @@
+framework module SSLiveSDK {
+  umbrella header "SSLiveSDK.h"
+
+  export *
+  module * { export * }
+}

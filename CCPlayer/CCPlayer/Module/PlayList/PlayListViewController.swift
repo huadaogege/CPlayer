@@ -45,9 +45,10 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
         if self.vcType == Type.FileList {
             let superVC:UIViewController = self.view.superview?.next as! UIViewController
             
-            let rightButton1 = UIBarButtonItem(title: "录制", style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButton1Click))
-            rightButton1.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
-                                                 NSAttributedString.Key.foregroundColor:UIColor.white], for: UIControl.State.normal)
+            let rightButton1 = UIBarButtonItem(image: UIImage(named: "take_Video"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButton1Click))
+            rightButton1.tintColor = UIColor.white
+//            rightButton1.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
+//                                                 NSAttributedString.Key.foregroundColor:UIColor.white], for: UIControl.State.normal)
             
             let rightButtonName2 = (self.vcType == Type.FileEditList) ? "完成":"编辑"
             let color = (self.vcType == Type.FileEditList) ? UIColor.black : UIColor.white

@@ -10,3 +10,4 @@
 #import "OPlayerViewController.h"
 #import "ShootViewController.h"
 #import "WebBrowswerController.h"
+#import "SLLive.h"

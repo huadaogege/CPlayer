@@ -29,6 +29,7 @@ class PrivateSettingViewController: UIViewController, PasswordViewDelegate {
         self.view.addSubview(self.pwdView)
         
         let leftItemButton = UIBarButtonItem(image: UIImage.init(named: "wb_goback"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(leftItemButtonClick))
+        leftItemButton.tintColor = UIColor.white
         self.navigationItem.leftBarButtonItem = leftItemButton
     }
     
