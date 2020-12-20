@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "wb_window_add.png",
+      "filename" : "wb_menu.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "wb_window_add@2x.png",
+      "filename" : "wb_menu@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "wb_window_add@3x.png",
+      "filename" : "wb_menu@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

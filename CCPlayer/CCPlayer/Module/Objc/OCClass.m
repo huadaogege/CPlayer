@@ -11,7 +11,16 @@
 
 @implementation OCClass
 
-+ (NSString *)memoryFree {
+static OCClass *instance;
++ (OCClass *)shareInstance {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[OCClass alloc] init];
+    });
+    return instance;
+}
+
+- (NSString *)memoryFree {
     /// 总大小
     float totalsize = 0.0;
     /// 剩余大小
@@ -35,5 +44,24 @@
     NSString *free = [NSString stringWithFormat:@"%.2fG", freesize/1024/1024];
     return free;
 }
+
+- (BOOL)application1:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options {
+    return [[SLLive sharedInstance] application:app openURL:url options:options];
+}
+
+- (BOOL)application2:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray<id<UIUserActivityRestoring>> * __nullable restorableObjects))restorationHandler {
+    return [[SLLive sharedInstance] application:application continueUserActivity:userActivity restorationHandler:restorationHandler];
+}
+
+- (void)application3:(UIApplication *)application
+performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem
+   completionHandler:(void (^)(BOOL))completionHandler {
+    [[SLLive sharedInstance] application:application performActionForShortcutItem:shortcutItem completionHandler:completionHandler];
+}
+
+- (void)params1:(NSString *)p1 params2:(NSString *)p2 {
+    
+}
+
 
 @end

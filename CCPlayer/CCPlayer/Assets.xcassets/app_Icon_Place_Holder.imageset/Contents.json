@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "wb_window_add.png",
+      "filename" : "app_Icon_Place_Holder.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "wb_window_add@2x.png",
+      "filename" : "app_Icon_Place_Holder@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "wb_window_add@3x.png",
+      "filename" : "app_Icon_Place_Holder@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

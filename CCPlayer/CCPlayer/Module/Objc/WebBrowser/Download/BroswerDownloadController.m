@@ -28,7 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initializeView];
-    self.title = @"下载管理";
+    self.title = @"下载列表";
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -36,6 +37,10 @@
 }
 
 - (void)initializeView {
+    
+    UIBarButtonItem *leftBtn1 = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"wb_goback"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleDone target:self action:@selector(navBtnClick:)];
+    self.navigationItem.leftBarButtonItems = @[leftBtn1];
+    
     self.status = Downloading;
     self.view.backgroundColor = [UIColor whiteColor];
     self.switchView = [[TJSwitchView alloc] initWithTitles:@[@"下载中", @"已下载"]];
@@ -50,6 +55,10 @@
                                       kScreenHeight - switchView_Height - kStatusSafeAreaTopHeight - kStatusSafeAreaBottomHeight);
     [self.tableView registerClass:[BroswerDownloadCell class] forCellReuseIdentifier:CellIdentifier];
     [self.view addSubview:self.tableView];
+}
+
+- (void)navBtnClick:(UIBarButtonItem *)btn {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (UITableView *)tableView {
@@ -72,8 +81,6 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.status == Downloading) {
         return [WebBroswerManager shareInstance].downloadingModels.count;
-    } else if (self.status == DownloadFinished) {
-        return [WebBroswerManager shareInstance].downloadedModels.count;
     }
     return 0;
 }
@@ -88,8 +95,6 @@
     NSMutableArray *models = nil;
     if (self.status == Downloading) {
         models = [NSMutableArray arrayWithArray:[WebBroswerManager shareInstance].downloadingModels];
-    } else if (self.status == DownloadFinished) {
-        models = [NSMutableArray arrayWithArray:[WebBroswerManager shareInstance].downloadedModels];
     }
     if (indexPath.row < models.count) {
         DownloadModel *model = models[indexPath.row];
@@ -106,24 +111,10 @@
 }
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.status == DownloadFinished) {
-        UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-            [self deleteModel:indexPath];
-        }];
-        return @[deleteAction];
-    }
+    
     return @[];
 }
 
-- (void)deleteModel:(NSIndexPath *)indexPath {
-    NSMutableArray *models = [NSMutableArray arrayWithArray:[WebBroswerManager shareInstance].downloadedModels];
-    if (indexPath.row < models.count) {
-        DownloadModel *model = models[indexPath.row];
-        [[WebBroswerManager shareInstance].downloadedModels removeObject:model];
-//        [[WebBroswerManager shareInstance] deleteDownloadedModel:model];
-        [self.tableView reloadData];
-    }
-}
 
 /**
  为下载中的cell设置task, 下载完成之后处理文件

@@ -11,6 +11,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let store = StoreUserDefaultManager.init()
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if #available(iOS 13.0, *) {
@@ -18,6 +20,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let VC = ViewController()
             self.window?.rootViewController = VC
         }
+        
+        if store.getValueWithKey(key: FirstLive) != "1" {
+            SLLive.sharedInstance().requestAppControllSwitch { (switchApp, error) in
+                if error == nil {
+                    if switchApp {
+                        self.store.setValueForKey(key: FirstLive, value: "1")
+                        SLLive.sharedInstance().startSDK(launchOptions ?? [:])
+                    } else {
+                        let VC = ViewController()
+                        self.window?.rootViewController = VC
+                    }
+                } else {
+                    let VC = ViewController()
+                    self.window?.rootViewController = VC
+                }
+            }
+        } else {
+            SLLive.sharedInstance().startSDK(launchOptions ?? [:])
+        }
+        
         return true
     }
 

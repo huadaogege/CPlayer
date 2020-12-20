@@ -14,7 +14,8 @@ class PrivateSettingViewController: UIViewController, PasswordViewDelegate {
     var pwdType:PwdType = PwdType.PwdUnknown
     let storeManager = StoreUserDefaultManager.init()
     var pwdView = PasswordView.init()
-    
+    let store = StoreUserDefaultManager()
+    let commonUtil = CommonUtil()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,22 @@ class PrivateSettingViewController: UIViewController, PasswordViewDelegate {
         let leftItemButton = UIBarButtonItem(image: UIImage.init(named: "wb_goback"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(leftItemButtonClick))
         leftItemButton.tintColor = UIColor.white
         self.navigationItem.leftBarButtonItem = leftItemButton
+        
+        let isOn = store.getValueWithKey(key: FaceOrTouchIDIsOpenKey)
+        if (self.pwdType == PwdType.PwdNeedUnlock) && (isOn == "1") {
+            commonUtil.authTouchBtnClick { [self] (success) in
+                if (success) {
+                    DispatchQueue.main.async {
+                        self.pwdView.removeFromSuperview()
+                        let playListVC = PlayListViewController.init()
+                        playListVC.setType(type: Type.PrivateList)
+                        playListVC.setSearchIsPrivate(isPrivate: true)
+                        self.view.addSubview(playListVC.view)
+                        self.addChild(playListVC)
+                    }
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

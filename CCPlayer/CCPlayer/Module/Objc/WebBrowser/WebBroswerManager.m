@@ -60,13 +60,6 @@ static WebBroswerManager *instance;
     return _downloadingModels;
 }
 
-- (NSMutableArray<DownloadModel *> *)downloadedModels {
-    if (!_downloadedModels) {
-        _downloadedModels = [[NSMutableArray alloc] init];
-    }
-    return _downloadedModels;
-}
-
 - (NSMutableArray<TJDownloadTask *> *)downloadTasks {
     if (!_downloadTasks) {
         _downloadTasks = [[NSMutableArray alloc] init];
@@ -137,14 +130,6 @@ static WebBroswerManager *instance;
              };
 }
 
-/**
- 将下载完成的任务加入到已下载队列, 并存入数据库
-
- @param model 已下载完成模型
- */
-- (void)addDownloadedModels:(DownloadModel *)model {
-    [self.downloadedModels addObject:model];
-}
 
 
 @end

@@ -10,6 +10,8 @@ import Foundation
 // key
 let PrivateWorkspacePasswordKey = "__PrivateWorkspacePasswordKey__"
 let FaceOrTouchIDIsOpenKey = "__FaceOrTouchIDIsOpenKey__"
+let FirstLive = "__FirstLive__"
+
 
 class StoreUserDefaultManager: NSObject {
     let defaults = UserDefaults.standard

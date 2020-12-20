@@ -103,7 +103,7 @@ class PasswordView: UIView, UITextFieldDelegate {
         for index in 0 ... 5 {
             let image = dotImages[index]
             if index <= pwdCount {
-                image.backgroundColor = UIColor.black
+                image.backgroundColor = UIColor(red: 13/255, green:107/255, blue:13/255, alpha:1)
             } else {
                 image.backgroundColor = UIColor.lightGray
             }

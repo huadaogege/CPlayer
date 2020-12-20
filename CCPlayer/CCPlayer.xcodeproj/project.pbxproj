@@ -23,6 +23,7 @@
 		E92B602A2588BEE100C9D5A3 /* TJDownloadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = E92B60292588BEE100C9D5A3 /* TJDownloadTask.m */; };
 		E92B60302588BF8800C9D5A3 /* WebBroswerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E92B602F2588BF8800C9D5A3 /* WebBroswerManager.m */; };
 		E9496F47256EA97100CF27C0 /* CFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9496F46256EA97100CF27C0 /* CFileManager.swift */; };
+		E94A5F57258DF3CE007B31B8 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94A5F56258DF3CE007B31B8 /* AboutViewController.m */; };
 		E953ECDB258C833600B0A8D9 /* SSLiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E953ECCF258C82ED00B0A8D9 /* SSLiveSDK.framework */; };
 		E953ECDC258C833600B0A8D9 /* SSLiveSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E953ECCF258C82ED00B0A8D9 /* SSLiveSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E96F2EC725729F43005416C3 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96F2EC625729F43005416C3 /* CommonUtil.swift */; };
@@ -140,6 +141,8 @@
 		E92B602E2588BF8800C9D5A3 /* WebBroswerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebBroswerManager.h; sourceTree = "<group>"; };
 		E92B602F2588BF8800C9D5A3 /* WebBroswerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebBroswerManager.m; sourceTree = "<group>"; };
 		E9496F46256EA97100CF27C0 /* CFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFileManager.swift; sourceTree = "<group>"; };
+		E94A5F55258DF3CE007B31B8 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		E94A5F56258DF3CE007B31B8 /* AboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		E953ECCF258C82ED00B0A8D9 /* SSLiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SSLiveSDK.framework; sourceTree = "<group>"; };
 		E96F2EC625729F43005416C3 /* CommonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
 		E96F2EE32573CAE1005416C3 /* PhotoAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumViewController.swift; sourceTree = "<group>"; };
@@ -511,6 +514,8 @@
 				E9E888002577D5F200C38BD4 /* PlayModel.m */,
 				E988A31925890EB8005B3AEE /* CustomAlertVC.h */,
 				E988A31825890EB8005B3AEE /* CustomAlertVC.m */,
+				E94A5F55258DF3CE007B31B8 /* AboutViewController.h */,
+				E94A5F56258DF3CE007B31B8 /* AboutViewController.m */,
 				E9EB474A25765A71007E0D56 /* CCPlayer-Bridging-Header.h */,
 			);
 			path = Objc;
@@ -774,6 +779,7 @@
 				E99521C325811AA40005D18C /* OPlayerViewController.m in Sources */,
 				E9EB474D25765A72007E0D56 /* OCClass.m in Sources */,
 				E9EB475925765B12007E0D56 /* MBProgressHUD.m in Sources */,
+				E94A5F57258DF3CE007B31B8 /* AboutViewController.m in Sources */,
 				E9F6D9CB2589A50200D53EE3 /* AFHTTPSessionManager.m in Sources */,
 				E9017FCD2568F0A600B3FCB2 /* MainViewController.swift in Sources */,
 				E9AA0088258385AA00A89AA9 /* MASLayoutConstraint.m in Sources */,
@@ -976,8 +982,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = F3D66462B2;
+				DEVELOPMENT_TEAM = ZMWS8VPSH5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -991,7 +998,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Cui.CCPlayer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ccc.CCPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CCPlayer/Module/Objc/CCPlayer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1007,8 +1014,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = F3D66462B2;
+				DEVELOPMENT_TEAM = ZMWS8VPSH5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1023,7 +1031,7 @@
 					"@executable_path/Frameworks",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = Cui.CCPlayer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ccc.CCPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CCPlayer/Module/Objc/CCPlayer-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

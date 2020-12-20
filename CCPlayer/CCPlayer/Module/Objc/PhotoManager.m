@@ -24,6 +24,9 @@
         }
         
     }];
+    
+    __block int totalCount = videoAssets.count;
+    
     for (PHAsset *asset in videoAssets) {
         [[PHImageManager defaultManager] requestAVAssetForVideo:asset options:nil resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
             AVURLAsset *urlAsset = (AVURLAsset*)asset;
@@ -65,16 +68,18 @@
                 }
             }
             model.bounds = videoSize;
-            
-            [videoModels addObject:model];
-            if (videoModels.count == videoAssets.count) {
+            if (seconds == 0) {
+                totalCount --;
+            } else {
+                [videoModels addObject:model];
+            }
+            if (videoModels.count == totalCount) {
                 if (block) {
                     block(videoModels);
                 }
             }
         }];
     }
-    
     NSLog(@"assets:%@", videoAssets);
 }
 

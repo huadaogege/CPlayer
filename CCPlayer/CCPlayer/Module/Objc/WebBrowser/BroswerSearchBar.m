@@ -38,7 +38,7 @@
 - (UITextField *)searchTextFiled {
     if (!_searchTextFiled) {
         _searchTextFiled = [[UITextField alloc] init];
-        _searchTextFiled.placeholder = @"输入网址或搜索";
+        _searchTextFiled.placeholder = @"输入网址或完整的下载链接";
         _searchTextFiled.font = [UIFont systemFontOfSize:15];
         _searchTextFiled.textColor = RGB(0x33, 0x33, 0x33);
         _searchTextFiled.leftViewMode = UITextFieldViewModeAlways;

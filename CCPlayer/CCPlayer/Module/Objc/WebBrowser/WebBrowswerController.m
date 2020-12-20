@@ -37,10 +37,10 @@
     
     UIBarButtonItem *leftBtn3 = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"wb_gohome"]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleDone target:self action:@selector(navBtnClick:)];
     leftBtn3.tag = 3;
+    leftBtn3.tintColor = [UIColor whiteColor];
     self.navigationItem.leftBarButtonItems = @[leftBtn1, leftBtn2, leftBtn3];
     
-    UIBarButtonItem *rightBtn1 = [[UIBarButtonItem alloc] initWithTitle:@"下载" style:UIBarButtonItemStylePlain target:self action:@selector(navBtnClick:)];
-    [rightBtn1 setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]  forState:UIControlStateNormal];
+    UIBarButtonItem *rightBtn1 = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"wb_list"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleDone target:self action:@selector(navBtnClick:)];
     rightBtn1.tag = 4;
     self.navigationItem.rightBarButtonItems = @[rightBtn1];
 }

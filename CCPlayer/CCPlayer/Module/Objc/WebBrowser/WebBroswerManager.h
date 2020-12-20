@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, strong) NSMutableArray <DownloadModel *> *downloadingModels;
-@property (nonatomic, strong) NSMutableArray <DownloadModel *> *downloadedModels;
+//@property (nonatomic, strong) NSMutableArray <DownloadModel *> *downloadedModels;
 
 @property (nonatomic, strong) NSMutableArray <TJDownloadTask *> *downloadTasks;
 

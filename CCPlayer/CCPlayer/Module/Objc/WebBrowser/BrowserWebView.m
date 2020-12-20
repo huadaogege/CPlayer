@@ -241,7 +241,7 @@ static int refreshCount = 0;//标记当前界面刷新次数
 - (void)searchButtonClick:(NSString *)searchContent fromRecord:(BOOL)fromRecord {
     [self setHomePage:NO];
     searchContent = [self addPrefixToIp:searchContent];
-    if ([searchContent hasPrefix:@"http://"] || [searchContent hasPrefix:@"https://"]) {
+    if ([searchContent.lowercaseString hasPrefix:@"http://"] || [searchContent.lowercaseString hasPrefix:@"https://"]) {
         if (!fromRecord) {
             searchContent = [searchContent stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         }

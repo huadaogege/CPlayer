@@ -94,7 +94,7 @@ class SettingCell: UITableViewCell {
         self.titleLabel.text = title
         if title == "存储空间" {
             self.rightLabel.isHidden = false
-            self.rightLabel.text = "剩余:" + OCClass.memoryFree()
+            self.rightLabel.text = "剩余:" + OCClass.shareInstance().memoryFree()
         } else {
             self.rightLabel.isHidden = true
             self.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator

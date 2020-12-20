@@ -47,8 +47,6 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
             
             let rightButton1 = UIBarButtonItem(image: UIImage(named: "take_Video"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightButton1Click))
             rightButton1.tintColor = UIColor.white
-//            rightButton1.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial",size: 16)!,
-//                                                 NSAttributedString.Key.foregroundColor:UIColor.white], for: UIControl.State.normal)
             
             let rightButtonName2 = (self.vcType == Type.FileEditList) ? "完成":"编辑"
             let color = (self.vcType == Type.FileEditList) ? UIColor.black : UIColor.white
@@ -115,7 +113,7 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
                                                        y: 0,
                                                        width: 80,
                                                        height: 80))
-        tipsImage.backgroundColor = UIColor.green
+        tipsImage.image = UIImage(named: "app_Icon_Place_Holder")
         tipsView.addSubview(tipsImage)
         
         let tipsLabel = UILabel.init(frame: CGRect(x: 0,
@@ -175,7 +173,7 @@ class PlayListViewController: UIViewController, UITableViewDelegate, UITableView
                 button.backgroundColor = UIColor.init(red: 233/255.0, green: 234/255.0, blue: 235/255.0, alpha: 1.0)
             } else if index == 2 {
                 button.setTitleColor(UIColor.white, for: .normal)
-                button.backgroundColor = UIColor(red: 30/255, green:0/255, blue:202/255, alpha:1)
+                button.backgroundColor = UIColor(red: 13/255, green:107/255, blue:13/255, alpha:1)
             }
             button.tag = index
             button.addTarget(self, action: #selector(editButtonClick), for: .touchUpInside)

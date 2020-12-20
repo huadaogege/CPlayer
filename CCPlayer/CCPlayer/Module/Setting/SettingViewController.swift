@@ -87,6 +87,11 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                 }
             }
+        } else if indexPath.row == 4 {
+            let aboutVC = AboutViewController()
+            aboutVC.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(aboutVC, animated: true)
+            aboutVC.hidesBottomBarWhenPushed = false
         }
     }
 }

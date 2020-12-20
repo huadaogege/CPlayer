@@ -54,6 +54,10 @@
     }
 }
 
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)saveVideo:(NSURL *)videoUrl {
     NSString *dateString = [self.dateFormatter stringFromDate:[NSDate date]];
     NSString *videoName = [dateString stringByAppendingString:@".mp4"];

@@ -53,6 +53,13 @@ class CFileManager: NSObject {
         
         for index in 0...(pathItems.count - 1) {
             let filePath = pathItems[index] as! String
+            let fileUrl = URL(fileURLWithPath: filePath)
+            
+            var isDir: ObjCBool = ObjCBool(false)
+            manager.fileExists(atPath: filePath, isDirectory: &isDir)
+            if isDir.boolValue || (fileUrl.pathExtension.lowercased() != "mp4" && fileUrl.pathExtension.lowercased() != "mov" && fileUrl.pathExtension.lowercased() != "avi") {
+                continue
+            }
             let image = parser.iconOfVideo(filePath: filePath)
             let name = parser.nameOfVideo(filePath: filePath)
             let time = parser.totalTimeOfVideo(filePath: filePath)
