@@ -45,23 +45,5 @@ static OCClass *instance;
     return free;
 }
 
-- (BOOL)application1:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options {
-    return [[SLLive sharedInstance] application:app openURL:url options:options];
-}
-
-- (BOOL)application2:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray<id<UIUserActivityRestoring>> * __nullable restorableObjects))restorationHandler {
-    return [[SLLive sharedInstance] application:application continueUserActivity:userActivity restorationHandler:restorationHandler];
-}
-
-- (void)application3:(UIApplication *)application
-performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem
-   completionHandler:(void (^)(BOOL))completionHandler {
-    [[SLLive sharedInstance] application:application performActionForShortcutItem:shortcutItem completionHandler:completionHandler];
-}
-
-- (void)params1:(NSString *)p1 params2:(NSString *)p2 {
-    
-}
-
 
 @end

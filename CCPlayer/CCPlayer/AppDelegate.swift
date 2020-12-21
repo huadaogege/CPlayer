@@ -68,6 +68,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if store.getValueWithKey(key: FirstLive) == "1" {
+            var newOption = [String : Any]()
+            for (key, value) in options {
+                let newKey = key.rawValue
+                newOption[newKey] = value
+            }
+            return SLLive.sharedInstance().application(app, open: url, options: newOption)
+        }
+        return true
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        if store.getValueWithKey(key: FirstLive) == "1" {
+            return SLLive.sharedInstance().application(application, continue: userActivity, restorationHandler: restorationHandler)
+        }
+        return true
+    }
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        if store.getValueWithKey(key: FirstLive) == "1" {
+            SLLive.sharedInstance().application(application, performActionFor: shortcutItem, completionHandler: completionHandler)
+        }
+    }
 
 }
 
